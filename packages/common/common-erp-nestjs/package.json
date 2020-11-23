@@ -1,0 +1,24 @@
+{
+  "name": "@gmahechas/common-erp-nestjs",
+  "version": "0.0.0",
+  "description": "common-erp-nestjs",
+  "author": "gmahechas",
+  "private": false,
+  "license": "UNLICENSED",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^7.5.5",
+    "@nestjs/core": "^7.5.5",
+    "@nestjs/microservices": "^7.5.5",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.6.3",
+    "typescript": "^4.1.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
