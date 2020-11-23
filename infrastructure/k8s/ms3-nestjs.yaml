@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms3-deployment
+  namespace: ms3-namespace
+  annotations:
+    kubernetes.io/change-cause: "Initial Deploy"
+spec:
+  replicas: 2
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: ms3-pod
+  template:
+    metadata:
+      labels:
+        app: ms3-pod
+    spec:
+      containers:
+        - name: ms3-container
+          image: gmahechas/ms3-nestjs
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MS3_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: ms3-secret
+                  key: MS3_PORT
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: ms3-secret
+                  key: MONGODB_URI
+            - name: MONGODB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: ms3-secret
+                  key: MONGODB_USER
+            - name: MONGODB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: ms3-secret
+                  key: MONGODB_PASS
+          ports:  
+            - containerPort: 50003
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms3-service
+  namespace: ms3-namespace
+spec:
+  type: ClusterIP
+  selector:
+    app: ms3-pod
+  ports:
+    - protocol: TCP
+      port: 50003
+      targetPort: 50003

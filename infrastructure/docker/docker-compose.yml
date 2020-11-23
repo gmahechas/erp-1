@@ -1,0 +1,78 @@
+version: '3.8'
+services:
+  api-gateway-nestjs:
+    build:
+      context: ../../
+      dockerfile: infrastructure/docker/Dockerfile
+      args:
+        port: 3000
+        ppath: packages/api-gateway/api-gateway-nestjs
+    container_name: api-gateway-nestjs
+    image: gmahechas/api-gateway-nestjs:0.0.11
+    env_file:
+      - ../env-files/api-gateway.env
+    networks:
+      - backend
+    ports:
+      - "3000:3000"
+
+  ms1-nestjs:
+    build:
+      context: ../../
+      dockerfile: infrastructure/docker/Dockerfile
+      args:
+        port: 50001
+        ppath: packages/1/ms1-nestjs/
+    container_name: ms1-nestjs
+    image: gmahechas/ms1-nestjs:0.0.11
+    env_file:
+      - ../env-files/ms1.env
+    networks:
+      - backend
+
+  ms2-nestjs:
+    build:
+      context: ../../
+      dockerfile: infrastructure/docker/Dockerfile
+      args:
+        port: 50002
+        ppath: packages/2/ms2-nestjs/
+    container_name: ms2-nestjs
+    image: gmahechas/ms2-nestjs:0.0.6
+    env_file:
+      - ../env-files/ms2.env
+    networks:
+      - backend
+
+  ms3-nestjs:
+    build:
+      context: ../../
+      dockerfile: infrastructure/docker/Dockerfile
+      args:
+        port: 50003
+        ppath: packages/3/ms3-nestjs/
+    container_name: ms3-nestjs
+    image: gmahechas/ms3-nestjs:0.0.5
+    env_file:
+      - ../env-files/ms3.env
+    networks:
+      - backend
+
+  ms4-nestjs:
+    build:
+      context: ../../
+      dockerfile: infrastructure/docker/Dockerfile
+      args:
+        port: 50004
+        ppath: packages/4/ms4-nestjs/
+    container_name: ms4-nestjs
+    image: gmahechas/ms4-nestjs:0.0.5
+    env_file:
+      - ../env-files/ms4.env
+    networks:
+      - backend
+
+networks:
+  backend:
+    name: erp_backend_network
+    driver: bridge

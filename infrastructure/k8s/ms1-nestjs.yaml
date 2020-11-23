@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms1-deployment
+  namespace: ms1-namespace
+  annotations:
+    kubernetes.io/change-cause: "Initial Deploy"
+spec:
+  replicas: 2
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: ms1-pod
+  template:
+    metadata:
+      labels:
+        app: ms1-pod
+    spec:
+      containers:
+        - name: ms1-container
+          image: gmahechas/ms1-nestjs
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MS1_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: ms1-secret
+                  key: MS1_PORT
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: ms1-secret
+                  key: MONGODB_URI
+            - name: MONGODB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: ms1-secret
+                  key: MONGODB_USER
+            - name: MONGODB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: ms1-secret
+                  key: MONGODB_PASS
+          ports:  
+            - containerPort: 50001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms1-service
+  namespace: ms1-namespace
+spec:
+  type: ClusterIP
+  selector:
+    app: ms1-pod
+  ports:
+    - protocol: TCP
+      port: 50001
+      targetPort: 50001

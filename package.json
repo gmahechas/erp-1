@@ -1,0 +1,20 @@
+{
+  "name": "root",
+  "description": "erp",
+  "author": "gmahechas",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "lerna": "lerna",
+    "commit": "git-cz",
+    "build": "lerna run build --stream",
+    "start:dev": "lerna run start:dev --stream",
+    "start:prod": "lerna run start:prod --stream",
+    "test": "lerna run test --stream"
+  },
+  "devDependencies": {
+    "conventional-changelog": "^3.1.24",
+    "git-cz": "^4.7.4",
+    "lerna": "^3.22.1"
+  }
+}
