@@ -1,9 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
-import { userSchema } from '@gmahechas/common-erp';
+import { userSchema, GRPC_USER_SERVICE_NAME } from '@gmahechas/common-erp';
 
-import { GRPC_USER_SERVICE_NAME } from '@auth/utils/constants';
 import { UserGrpcController } from '@auth/modules/user/server/grpc/user-grpc.controller';
 import { UserMongodbService } from '@auth/modules/user/client/mongodb/user-mongodb.service';
 

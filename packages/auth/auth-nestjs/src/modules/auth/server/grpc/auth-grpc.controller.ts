@@ -5,9 +5,9 @@ import {
   ISigninRequest,
   ISigninResponse,
   Password,
+  GRPC_AUTH_SERVICE_NAME,
 } from '@gmahechas/common-erp';
 
-import { GRPC_AUTH_SERVICE_NAME } from '@auth/utils/constants';
 import { UserMongodbService } from '@auth/modules/user/client/mongodb/user-mongodb.service';
 
 @Controller()
@@ -32,6 +32,6 @@ export class AuthGrpcController {
       throw new RpcException({ code: 16, message: 'Invalid credentials' });
     }
 
-    return { successAuthUser: true };
+    return new Promise((resolve) => resolve({ successAuthUser: true }));
   }
 }

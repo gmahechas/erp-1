@@ -6,11 +6,14 @@ import { Model } from 'mongoose';
 import {
   IEntityMany,
   IEntityOne,
-  IUser,
+  ICreateUserInput,
+  IUpdateUserInput,
+  IDeleteUserInput,
+  ISearchUserInput,
   UserDocument,
+  IUser,
+  GRPC_USER_SERVICE_NAME,
 } from '@gmahechas/common-erp';
-
-import { GRPC_USER_SERVICE_NAME } from '@auth/utils/constants';
 
 @Injectable()
 export class UserMongodbService {
@@ -19,13 +22,17 @@ export class UserMongodbService {
     private readonly entityModel: Model<UserDocument>,
   ) {}
 
-  async createOne(data: IEntityOne<IUser>): Promise<IEntityOne<IUser>> {
+  async createOne(
+    data: IEntityOne<ICreateUserInput>,
+  ): Promise<IEntityOne<IUser>> {
     const { ...dataEntity } = data.entity;
     const model = new this.entityModel(dataEntity);
     return { entity: await model.save() };
   }
 
-  async updateOne(data: IEntityOne<IUser>): Promise<IEntityOne<IUser>> {
+  async updateOne(
+    data: IEntityOne<IUpdateUserInput>,
+  ): Promise<IEntityOne<IUser>> {
     const { ...dataEntity } = data.entity;
     const entity = await this.entityModel.findById(dataEntity.id);
     if (entity) {
@@ -44,7 +51,9 @@ export class UserMongodbService {
     }
   }
 
-  async deleteOne(data: IEntityOne<IUser>): Promise<IEntityOne<IUser>> {
+  async deleteOne(
+    data: IEntityOne<IDeleteUserInput>,
+  ): Promise<IEntityOne<IUser>> {
     const { ...dataEntity } = data.entity;
     const entity = await this.entityModel.findById(dataEntity.id);
     if (entity) {
@@ -59,14 +68,18 @@ export class UserMongodbService {
     }
   }
 
-  async searchById(data: IEntityOne<IUser>): Promise<IEntityOne<IUser>> {
+  async searchById(
+    data: IEntityOne<ISearchUserInput>,
+  ): Promise<IEntityOne<IUser>> {
     const { ...dataEntity } = data.entity;
     return {
       entity: await this.entityModel.findById({ _id: dataEntity.id }),
     };
   }
 
-  async searchMany(data: IEntityMany<IUser>): Promise<IEntityMany<IUser>> {
+  async searchMany(
+    data: IEntityMany<ISearchUserInput>,
+  ): Promise<IEntityMany<IUser>> {
     const dataEntities = data.entities ? data.entities : [{}];
     return { entities: await this.entityModel.find({ $or: dataEntities }) };
   }

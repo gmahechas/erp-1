@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package auth;
 
-
 message SingInRequest {
   string userName = 1;
   string userPassword = 2;

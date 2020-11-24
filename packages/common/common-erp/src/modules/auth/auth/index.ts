@@ -1,1 +1,1 @@
-export { ISigninRequest, ISigninResponse } from './signin.interface';
+export { ISigninRequest, ISigninResponse } from './auth.input';
