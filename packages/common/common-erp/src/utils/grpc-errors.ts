@@ -1,6 +1,6 @@
-import { CustomError } from './custom.error'
-import { MicroserviceConnectionError } from './microservice-connection.error'
-import { RequestValidationError } from './request-validation.error'
+import { CustomError } from './../errors/custom.error'
+import { MicroserviceConnectionError } from './../errors/microservice-connection.error'
+import { RequestValidationError } from './../errors/request-validation.error'
 
 export const grpcErrors = (grpcErrorCode: number): CustomError => {
   switch (grpcErrorCode) {
