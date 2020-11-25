@@ -6,12 +6,6 @@ const createCountrySchema = object({
   countryCode: Joi.string().min(2).max(3).required()
 });
 
-const searchCountrySchema = object({
-  id: Joi.string(),
-  countryName: Joi.string().min(3).max(30),
-  countryCode: Joi.string().min(2).max(3)
-});
-
 const updateCountrySchema = object({
   id: Joi.string().required(),
   countryName: Joi.string().min(3).max(30),
@@ -24,7 +18,6 @@ const deleteCountrySchema = object({
 
 export const countryJoiSchema: JoiSchema = ({
   create: createCountrySchema,
-  search: searchCountrySchema,
   update: updateCountrySchema,
   delete: deleteCountrySchema
 });

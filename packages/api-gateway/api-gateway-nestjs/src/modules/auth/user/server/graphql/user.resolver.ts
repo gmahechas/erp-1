@@ -1,6 +1,9 @@
+import { UsePipes } from '@nestjs/common';
 import { Resolver, Mutation, Query, Args } from '@nestjs/graphql';
 
 import { Observable } from 'rxjs';
+
+import { userJoiSchema } from '@gmahechas/common-erp';
 
 import { UserGrpcService } from '@api-gateway-nestjs/modules/auth/user/client/grpc/user-grpc.service';
 import { UserType } from '@api-gateway-nestjs/modules/auth/user/server/graphql/user.type';
@@ -10,12 +13,14 @@ import {
   DeleteUserInput,
   SearchUserInput,
 } from '@api-gateway-nestjs/modules/auth/user/server/graphql/user.input';
+import { JoiValidationPipe } from '@api-gateway-nestjs/utils/joi-validation.pipe';
 
 @Resolver()
 export class UserResolver {
   constructor(private readonly userGrpcService: UserGrpcService) {}
 
   @Mutation(() => UserType, { name: `createOneUser`, nullable: true })
+  @UsePipes(new JoiValidationPipe(userJoiSchema.create))
   createOne(
     @Args('entity') entity: CreateUserInput,
   ): Observable<Partial<UserType>> {
@@ -23,6 +28,7 @@ export class UserResolver {
   }
 
   @Mutation(() => UserType, { name: `updateOneUser`, nullable: true })
+  @UsePipes(new JoiValidationPipe(userJoiSchema.update))
   updateOne(
     @Args('entity') entity: UpdateUserInput,
   ): Observable<Partial<UserType>> {
@@ -30,6 +36,7 @@ export class UserResolver {
   }
 
   @Mutation(() => UserType, { name: `deleteOneUser`, nullable: true })
+  @UsePipes(new JoiValidationPipe(userJoiSchema.delete))
   deleteOne(
     @Args('entity') entity: DeleteUserInput,
   ): Observable<Partial<UserType>> {

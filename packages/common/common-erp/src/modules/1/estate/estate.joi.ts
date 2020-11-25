@@ -7,13 +7,6 @@ const createEstateSchema = object({
   countryId: Joi.string().required()
 });
 
-const searchEstateSchema = object({
-  id: Joi.string(),
-  estateName: Joi.string().min(3).max(30),
-  estateCode: Joi.string().min(2).max(3),
-  countryId: Joi.string()
-});
-
 const updateEstateSchema = object({
   id: Joi.string().required(),
   estateName: Joi.string().min(3).max(30),
@@ -27,7 +20,6 @@ const deleteEstateSchema = object({
 
 export const estateJoiSchema: JoiSchema = ({
   create: createEstateSchema,
-  search: searchEstateSchema,
   update: updateEstateSchema,
   delete: deleteEstateSchema
 });

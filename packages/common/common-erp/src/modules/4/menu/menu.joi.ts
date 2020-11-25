@@ -9,11 +9,6 @@ const createMenuSchema = object({
   menuIdParent: Joi.string().min(3).max(30).required()
 });
 
-const searchMenuSchema = object({
-  id: Joi.string(),
-  menuName: Joi.string().min(3).max(30)
-});
-
 const updateMenuSchema = object({
   id: Joi.string().required(),
   menuName: Joi.string().min(3).max(30),
@@ -29,7 +24,6 @@ const deleteMenuSchema = object({
 
 export const menuJoiSchema: JoiSchema = ({
   create: createMenuSchema,
-  search: searchMenuSchema,
   update: updateMenuSchema,
   delete: deleteMenuSchema
 });

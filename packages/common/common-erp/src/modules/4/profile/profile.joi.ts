@@ -6,11 +6,6 @@ const createProfileSchema = object({
   profileDescription: Joi.string().min(3).max(30).required()
 });
 
-const searchProfileSchema = object({
-  id: Joi.string(),
-  profileName: Joi.string().min(3).max(30).required()
-});
-
 const updateProfileSchema = object({
   id: Joi.string().required(),
   profileName: Joi.string().min(3).max(30),
@@ -23,7 +18,6 @@ const deleteProfileSchema = object({
 
 export const profileJoiSchema: JoiSchema = ({
   create: createProfileSchema,
-  search: searchProfileSchema,
   update: updateProfileSchema,
   delete: deleteProfileSchema
 });

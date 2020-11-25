@@ -1,2 +1,2 @@
-export { addressJoiSchema } from './address-joi.schema';
+export { addressJoiSchema } from './address.joi';
 export { IAddress } from './address.interface';

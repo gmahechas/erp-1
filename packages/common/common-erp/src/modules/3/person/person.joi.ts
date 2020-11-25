@@ -13,15 +13,6 @@ const createPersonSchema = object({
   typeIdentificationId: Joi.string().required()
 });
 
-const searchPersonSchema = object({
-  id: Joi.string(),
-  personIdentification: Joi.string().min(2).max(64),
-  personCompanyName: Joi.string().min(2).max(128),
-  companyId: Joi.string(),
-  typePersonId: Joi.string(),
-  typeIdentificationId: Joi.string()
-});
-
 const updatePersonSchema = object({
   id: Joi.string().required(),
   personIdentification: Joi.string().min(2).max(64),
@@ -41,7 +32,6 @@ const deletePersonSchema = object({
 
 export const personJoiSchema: JoiSchema = ({
   create: createPersonSchema,
-  search: searchPersonSchema,
   update: updatePersonSchema,
   delete: deletePersonSchema
 });

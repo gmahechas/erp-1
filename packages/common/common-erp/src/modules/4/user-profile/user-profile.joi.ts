@@ -7,13 +7,6 @@ const createUserProfileSchema = object({
   profileId: Joi.string().required()
 });
 
-const searchUserProfileSchema = object({
-  id: Joi.string(),
-  userProfileStatus: Joi.boolean(),
-  userId: Joi.string(),
-  profileId: Joi.string().required()
-});
-
 const updateUserProfileSchema = object({
   id: Joi.string().required(),
   userProfileStatus: Joi.boolean(),
@@ -27,7 +20,6 @@ const deleteUserProfileSchema = object({
 
 export const userProfileJoiSchema: JoiSchema = ({
   create: createUserProfileSchema,
-  search: searchUserProfileSchema,
   update: updateUserProfileSchema,
   delete: deleteUserProfileSchema
 });

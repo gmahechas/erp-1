@@ -1,2 +1,2 @@
-export { companyJoiSchema } from './company-joi.schema';
+export { companyJoiSchema } from './company.joi';
 export { ICompany } from './company.interface';

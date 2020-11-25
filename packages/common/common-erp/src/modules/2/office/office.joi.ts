@@ -6,12 +6,6 @@ const createOfficeSchema = object({
   companyId: Joi.string().required()
 });
 
-const searchOfficeSchema = object({
-  id: Joi.string(),
-  officeName: Joi.string().min(3).max(30),
-  companyId: Joi.string()
-});
-
 const updateOfficeSchema = object({
   id: Joi.string().required(),
   officeName: Joi.string().min(3).max(30),
@@ -24,7 +18,6 @@ const deleteOfficeSchema = object({
 
 export const officeJoiSchema: JoiSchema = ({
   create: createOfficeSchema,
-  search: searchOfficeSchema,
   update: updateOfficeSchema,
   delete: deleteOfficeSchema
 });

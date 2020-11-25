@@ -8,14 +8,6 @@ const createAddressSchema = object({
   cityId: Joi.string().required()
 });
 
-const searchAddressSchema = object({
-  id: Joi.string(),
-  addressLine1: Joi.string(),
-  addressLine2: Joi.string(),
-  addressZipCode: Joi.string(),
-  cityId: Joi.string()
-});
-
 const updateAddressSchema = object({
   id: Joi.string().required(),
   addressLine1: Joi.string(),
@@ -30,7 +22,6 @@ const deleteAddressSchema = object({
 
 export const addressJoiSchema: JoiSchema = ({
   create: createAddressSchema,
-  search: searchAddressSchema,
   update: updateAddressSchema,
   delete: deleteAddressSchema
 });

@@ -6,12 +6,6 @@ const createTypePersonSchema = object({
   typePersonCode: Joi.string().min(2).max(8).required()
 });
 
-const searchTypePersonSchema = object({
-  id: Joi.string(),
-  typePersonDescription: Joi.string().min(2).max(64),
-  typePersonCode: Joi.string().min(2).max(8)
-});
-
 const updateTypePersonSchema = object({
   id: Joi.string().required(),
   typePersonDescription: Joi.string().min(2).max(64),
@@ -24,7 +18,6 @@ const deleteTypePersonSchema = object({
 
 export const typePersonJoiSchema: JoiSchema = ({
   create: createTypePersonSchema,
-  search: searchTypePersonSchema,
   update: updateTypePersonSchema,
   delete: deleteTypePersonSchema
 });

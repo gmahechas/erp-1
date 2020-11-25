@@ -8,14 +8,6 @@ const createCompanySchema = object({
   cityId: Joi.string().required()
 });
 
-const searchCompanySchema = object({
-  id: Joi.string(),
-  companyName: Joi.string().min(3).max(30).required(),
-  companyIdentification: Joi.string().min(2).max(30).required(),
-  companyKey: Joi.string().min(3).max(8).required(),
-  cityId: Joi.string()
-});
-
 const updateCompanySchema = object({
   id: Joi.string().required(),
   companyName: Joi.string().min(3).max(30),
@@ -30,7 +22,6 @@ const deleteCompanySchema = object({
 
 export const companyJoiSchema: JoiSchema = ({
   create: createCompanySchema,
-  search: searchCompanySchema,
   update: updateCompanySchema,
   delete: deleteCompanySchema
 });

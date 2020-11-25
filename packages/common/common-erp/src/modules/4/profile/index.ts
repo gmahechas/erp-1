@@ -1,2 +1,2 @@
-export { profileJoiSchema } from './profile-joi.schema';
+export { profileJoiSchema } from './profile.joi';
 export { IProfile } from './profile.interface';

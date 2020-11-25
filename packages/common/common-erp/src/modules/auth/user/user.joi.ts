@@ -7,12 +7,6 @@ const createUserSchema = object({
   personId: Joi.string().required()
 });
 
-const searchUserSchema = object({
-  id: Joi.string(),
-  userName: Joi.string().min(3).max(30),
-  personId: Joi.string()
-});
-
 const updateUserSchema = object({
   id: Joi.string().required(),
   userName: Joi.string().min(3).max(30),
@@ -26,7 +20,6 @@ const deleteUserSchema = object({
 
 export const userJoiSchema: JoiSchema = ({
   create: createUserSchema,
-  search: searchUserSchema,
   update: updateUserSchema,
   delete: deleteUserSchema
 });
