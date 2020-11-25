@@ -3,19 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## <small>0.0.2 (2020-11-25)</small>
+## <small>0.0.1 (2020-11-25)</small>
 
-* feat: @gmahechas/common-erp to @gmahechas/common-erp-nestjs ([637a1af](https://github.com/gmahechas/erp/commit/637a1af))
 * feat: add auth ms ([c7da002](https://github.com/gmahechas/erp/commit/c7da002))
 * feat: change searchById to searchOne, and hash password ([a5d9b7e](https://github.com/gmahechas/erp/commit/a5d9b7e))
-* feat: fix validations ([12e471a](https://github.com/gmahechas/erp/commit/12e471a))
+* feat: fix searchById and searchMany ([8972dd8](https://github.com/gmahechas/erp/commit/8972dd8))
 * feat: refactor auth-nestjs ([934c7d2](https://github.com/gmahechas/erp/commit/934c7d2))
 * feat: setup auth ms ([cb8e26c](https://github.com/gmahechas/erp/commit/cb8e26c))
-
-
-
-
-
-## <small>0.0.1 (2020-11-23)</small>
-
-* feat: add common modules ([dfe87b8](https://github.com/gmahechas/erp/commit/dfe87b8))
