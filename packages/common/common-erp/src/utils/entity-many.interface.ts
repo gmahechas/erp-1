@@ -1,3 +1,3 @@
 export interface IEntityMany<T> {
-  entities: T[] | null;
+  entities: Partial<T>[] | null;
 }

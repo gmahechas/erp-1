@@ -40,10 +40,10 @@ export class UserGrpcController {
   }
 
   @GrpcMethod(GRPC_USER_SERVICE_NAME)
-  async searchById(
+  async searchOne(
     data: IEntityOne<ISearchUserInput>,
   ): Promise<IEntityOne<IUser>> {
-    return await this.userMongodbService.searchById(data);
+    return await this.userMongodbService.searchOne(data);
   }
 
   @GrpcMethod(GRPC_USER_SERVICE_NAME)

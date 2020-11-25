@@ -69,7 +69,7 @@ export class UserMongodbService {
     }
   }
 
-  async searchById(
+  async searchOne(
     data: IEntityOne<ISearchUserInput>,
   ): Promise<IEntityOne<IUser>> {
     const dataEntity = this.changeIdInObject(data.entity);
@@ -81,14 +81,8 @@ export class UserMongodbService {
   async searchMany(
     data: IEntityMany<ISearchUserInput>,
   ): Promise<IEntityMany<IUser>> {
-    console.log('Llego', data.entities);
     const dataEntities = this.changeIdInArray(data.entities);
-    console.log('Salio', dataEntities);
     return { entities: await this.entityModel.find({ $or: dataEntities }) };
-  }
-
-  async searchOneByUsername(userName: string): Promise<IUser> {
-    return await this.entityModel.findOne({ userName });
   }
 
   changeIdInArray(data: any[]) {

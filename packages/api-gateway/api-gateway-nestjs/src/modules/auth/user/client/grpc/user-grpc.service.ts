@@ -46,23 +46,25 @@ export class UserGrpcService implements OnModuleInit {
     >(GRPC_USER_SERVICE_NAME);
   }
 
-  createOne(data: IEntityOne<CreateUserInput>): Observable<UserType> {
+  createOne(data: IEntityOne<CreateUserInput>): Observable<Partial<UserType>> {
     return this.grpcService.createOne(data).pipe(pluck('entity'));
   }
 
-  updateOne(data: IEntityOne<UpdateUserInput>): Observable<UserType> {
+  updateOne(data: IEntityOne<UpdateUserInput>): Observable<Partial<UserType>> {
     return this.grpcService.updateOne(data).pipe(pluck('entity'));
   }
 
-  deleteOne(data: IEntityOne<DeleteUserInput>): Observable<UserType> {
+  deleteOne(data: IEntityOne<DeleteUserInput>): Observable<Partial<UserType>> {
     return this.grpcService.deleteOne(data).pipe(pluck('entity'));
   }
 
-  searchById(data: IEntityOne<SearchUserInput>): Observable<UserType> {
-    return this.grpcService.searchById(data).pipe(pluck('entity'));
+  searchOne(data: IEntityOne<SearchUserInput>): Observable<Partial<UserType>> {
+    return this.grpcService.searchOne(data).pipe(pluck('entity'));
   }
 
-  searchMany(data: IEntityMany<SearchUserInput>): Observable<UserType[]> {
+  searchMany(
+    data: IEntityMany<SearchUserInput>,
+  ): Observable<Partial<UserType>[]> {
     return this.grpcService.searchMany(data).pipe(pluck('entities'));
   }
 }

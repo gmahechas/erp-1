@@ -1,21 +1,25 @@
-import { scrypt, randomBytes  } from 'crypto';
-import { promisify } from 'util';
+import bcrypt from 'bcrypt';
+/* import { scrypt, randomBytes } from 'crypto';
+import { promisify } from 'util'; */
 
-const scryptAsync = promisify(scrypt);
+/* const scryptAsync = promisify(scrypt); */
 
 export class Password {
 
+  static saltRounds = 10;
+
   static async toHash(password: string) {
-    const salt = randomBytes(8).toString('hex');
+    return await bcrypt.hash(password, this.saltRounds);
+    /* const salt = randomBytes(8).toString('hex');
     const buf = (await scryptAsync(password, salt, 64)) as Buffer;
-    return `${buf.toString('hex')}.${salt}`;
+    return `${buf.toString('hex')}.${salt}`; */
   }
 
-  static async compare(storedPassword: string, suppliedPassword: string) {
-    const [ hashedPassword, salt ] = storedPassword.split('.');
+  static async compare(suppliedPassword: string, storedPassword: string) {
+    return await bcrypt.compare(suppliedPassword, storedPassword);
+    /* const [ hashedPassword, salt ] = storedPassword.split('.');
     const buf = (await scryptAsync(suppliedPassword, salt, 64)) as Buffer;
-
-    return buf.toString('hex') === hashedPassword;
+    return buf.toString('hex') === hashedPassword; */
   }
 
 }

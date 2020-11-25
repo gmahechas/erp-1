@@ -17,15 +17,17 @@ export class AuthGrpcController {
   @GrpcMethod(GRPC_AUTH_SERVICE_NAME)
   async signin(data: IAuthSigninRequest): Promise<IAuthSigninResponse> {
     const { userName, userPassword } = data;
-    const user = await this.userMongodbService.searchOneByUsername(userName);
+    const { entity } = await this.userMongodbService.searchOne({
+      entity: { userName },
+    });
 
-    if (!user) {
+    if (!entity) {
       throw new RpcException({ code: 16, message: 'Invalid credentials' });
     }
 
     const passwordsMatch = await Password.compare(
-      user.userPassword,
       userPassword,
+      entity.userPassword,
     );
 
     if (!passwordsMatch) {

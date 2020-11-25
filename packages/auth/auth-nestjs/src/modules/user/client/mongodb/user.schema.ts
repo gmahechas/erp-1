@@ -2,7 +2,7 @@ import { Schema, Document } from 'mongoose';
 
 import { v4 as uuidv4 } from 'uuid';
 
-import { IUser } from '@gmahechas/common-erp';
+import { IUser, Password } from '@gmahechas/common-erp';
 
 export const userSchema = new Schema(
   {
@@ -33,6 +33,14 @@ export const userSchema = new Schema(
     },
   },
 );
+
+userSchema.pre('save', async function (done) {
+  if (this.isModified('userPassword')) {
+    const hashed = await Password.toHash(this.get('userPassword'));
+    this.set('userPassword', hashed);
+  }
+  done();
+});
 
 export interface UserDocument extends Document, IUser {
   id: string;
