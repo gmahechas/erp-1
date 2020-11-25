@@ -4,15 +4,14 @@ import { ClientGrpc } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
 
 import {
-  ISigninRequest,
-  ISigninResponse,
+  IAuthService,
   GRPC_AUTH_PACKAGE_NAME,
   GRPC_AUTH_SERVICE_NAME,
 } from '@gmahechas/common-erp';
 
-export interface IAuthService {
-  signin(data: ISigninRequest): Observable<ISigninResponse>;
-}
+import { AuthSigninRequestInput } from '@api-gateway-nestjs/modules/auth/auth/server/graphql/auth.input';
+import { AuthSigninResponseType } from '@api-gateway-nestjs/modules/auth/auth/server/graphql/auth.type';
+
 @Injectable()
 export class AuthGrpcService implements OnModuleInit {
   private authService: IAuthService;
@@ -25,7 +24,7 @@ export class AuthGrpcService implements OnModuleInit {
     );
   }
 
-  signin(data: ISigninRequest): Observable<ISigninResponse> {
+  signin(data: AuthSigninRequestInput): Observable<AuthSigninResponseType> {
     return this.authService.signin(data);
   }
 }

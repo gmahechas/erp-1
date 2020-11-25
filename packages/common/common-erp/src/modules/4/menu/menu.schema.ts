@@ -1,4 +1,4 @@
-import { Schema, Document } from 'mongoose';
+/* import { Schema, Document } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 
 import { IMenu } from './menu.interface';
@@ -41,4 +41,4 @@ export interface MenuDocument extends Document, IMenu {
   menuUri: string;
   menuOrder: number;
   menuIdParent: string;
-}
+} */

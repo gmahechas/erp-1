@@ -19,27 +19,37 @@ export class UserGrpcController {
   constructor(private readonly userMongodbService: UserMongodbService) {}
 
   @GrpcMethod(GRPC_USER_SERVICE_NAME)
-  createOne(data: IEntityOne<ICreateUserInput>): Promise<IEntityOne<IUser>> {
-    return this.userMongodbService.createOne(data);
+  async createOne(
+    data: IEntityOne<ICreateUserInput>,
+  ): Promise<IEntityOne<IUser>> {
+    return await this.userMongodbService.createOne(data);
   }
 
   @GrpcMethod(GRPC_USER_SERVICE_NAME)
-  updateOne(data: IEntityOne<IUpdateUserInput>): Promise<IEntityOne<IUser>> {
-    return this.userMongodbService.updateOne(data);
+  async updateOne(
+    data: IEntityOne<IUpdateUserInput>,
+  ): Promise<IEntityOne<IUser>> {
+    return await this.userMongodbService.updateOne(data);
   }
 
   @GrpcMethod(GRPC_USER_SERVICE_NAME)
-  deleteOne(data: IEntityOne<IDeleteUserInput>): Promise<IEntityOne<IUser>> {
-    return this.userMongodbService.deleteOne(data);
+  async deleteOne(
+    data: IEntityOne<IDeleteUserInput>,
+  ): Promise<IEntityOne<IUser>> {
+    return await this.userMongodbService.deleteOne(data);
   }
 
   @GrpcMethod(GRPC_USER_SERVICE_NAME)
-  searchById(data: IEntityOne<ISearchUserInput>): Promise<IEntityOne<IUser>> {
-    return this.userMongodbService.searchById(data);
+  async searchById(
+    data: IEntityOne<ISearchUserInput>,
+  ): Promise<IEntityOne<IUser>> {
+    return await this.userMongodbService.searchById(data);
   }
 
   @GrpcMethod(GRPC_USER_SERVICE_NAME)
-  searchMany(data: IEntityMany<ISearchUserInput>): Promise<IEntityMany<IUser>> {
-    return this.userMongodbService.searchMany(data);
+  async searchMany(
+    data: IEntityMany<ISearchUserInput>,
+  ): Promise<IEntityMany<IUser>> {
+    return await this.userMongodbService.searchMany(data);
   }
 }

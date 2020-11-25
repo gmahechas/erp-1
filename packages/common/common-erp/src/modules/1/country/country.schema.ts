@@ -1,4 +1,4 @@
-import { Schema, Document } from 'mongoose';
+/* import { Schema, Document } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 
 import { ICountry } from './country.interface';
@@ -30,4 +30,4 @@ export interface CountryDocument extends Document, ICountry {
   id: string;
   countryName: string;
   countryCode: string;
-}
+} */

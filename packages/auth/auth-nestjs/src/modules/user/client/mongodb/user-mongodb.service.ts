@@ -10,10 +10,11 @@ import {
   IUpdateUserInput,
   IDeleteUserInput,
   ISearchUserInput,
-  UserDocument,
   IUser,
   GRPC_USER_SERVICE_NAME,
 } from '@gmahechas/common-erp';
+
+import { UserDocument } from '@auth/modules/user/client/mongodb/user.schema';
 
 @Injectable()
 export class UserMongodbService {
@@ -73,7 +74,7 @@ export class UserMongodbService {
   ): Promise<IEntityOne<IUser>> {
     const { ...dataEntity } = data.entity;
     return {
-      entity: await this.entityModel.findById({ _id: dataEntity.id }),
+      entity: await this.entityModel.findOne(dataEntity),
     };
   }
 

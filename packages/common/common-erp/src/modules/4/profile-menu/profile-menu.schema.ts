@@ -1,4 +1,4 @@
-import { Schema, Document } from 'mongoose';
+/* import { Schema, Document } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 
 import { IProfileMenu } from './profile-menu.interface';
@@ -35,4 +35,4 @@ export interface ProfileMenuDocument extends Document, IProfileMenu {
   profileMenuStatus: boolean;
   menuId: string;
   profileId: string;
-}
+} */

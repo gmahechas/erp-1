@@ -1,4 +1,4 @@
-import { Schema, Document } from 'mongoose';
+/* import { Schema, Document } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 
 import { ICity } from './city.interface';
@@ -35,4 +35,4 @@ export interface CityDocument extends Document, ICity {
   cityName: string;
   cityCode: string;
   estateId: string;
-}
+} */

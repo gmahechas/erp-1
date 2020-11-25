@@ -1,4 +1,4 @@
-import { Schema, Document } from 'mongoose';
+/* import { Schema, Document } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 
 import { IOffice } from './office.interface';
@@ -30,4 +30,4 @@ export interface OfficeDocument extends Document, IOffice {
   id: string;
   officeName: string;
   companyId: string;
-}
+} */

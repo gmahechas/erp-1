@@ -1,4 +1,4 @@
-import { Schema, Document } from 'mongoose';
+/* import { Schema, Document } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 
 import { IEstate } from './estate.interface';
@@ -35,4 +35,4 @@ export interface EstateDocument extends Document, IEstate {
   estateName: string;
   estateCode: string;
   countryId: string;
-}
+} */

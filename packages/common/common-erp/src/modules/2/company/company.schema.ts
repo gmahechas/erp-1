@@ -1,4 +1,4 @@
-import { Schema, Document } from 'mongoose';
+/* import { Schema, Document } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 
 import { ICompany } from './company.interface';
@@ -41,3 +41,4 @@ export interface CompanyDocument extends Document, ICompany {
   companyKey: string;
   cityId: string;
 }
+ */

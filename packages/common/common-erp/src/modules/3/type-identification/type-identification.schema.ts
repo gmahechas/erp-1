@@ -1,4 +1,4 @@
-import { Schema, Document } from 'mongoose';
+/* import { Schema, Document } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 
 import { ITypeIdentification } from './type-identification.interface';
@@ -30,4 +30,4 @@ export interface TypeIdentificationDocument extends Document, ITypeIdentificatio
   id: string;
   typeIdentificationDescription: string;
   typeIdentificationCode: string;
-}
+} */

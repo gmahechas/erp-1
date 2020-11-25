@@ -5,26 +5,29 @@ import { Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
 
 import {
+  IEntityService,
   IEntityMany,
   IEntityOne,
-  IEntityService,
-  IUser,
-  ICreateUserInput,
-  ISearchUserInput,
-  IUpdateUserInput,
-  IDeleteUserInput,
   GRPC_AUTH_PACKAGE_NAME,
   GRPC_USER_SERVICE_NAME,
 } from '@gmahechas/common-erp';
 
+import { UserType } from '@api-gateway-nestjs/modules/auth/user/server/graphql/user.type';
+import {
+  CreateUserInput,
+  UpdateUserInput,
+  DeleteUserInput,
+  SearchUserInput,
+} from '@api-gateway-nestjs/modules/auth/user/server/graphql/user.input';
+
 @Injectable()
 export class UserGrpcService implements OnModuleInit {
   private grpcService: IEntityService<
-    IUser,
-    ICreateUserInput,
-    IUpdateUserInput,
-    IDeleteUserInput,
-    ISearchUserInput
+    UserType,
+    CreateUserInput,
+    UpdateUserInput,
+    DeleteUserInput,
+    SearchUserInput
   >;
 
   constructor(
@@ -34,32 +37,32 @@ export class UserGrpcService implements OnModuleInit {
   onModuleInit() {
     this.grpcService = this.grpcClient.getService<
       IEntityService<
-        IUser,
-        ICreateUserInput,
-        IUpdateUserInput,
-        IDeleteUserInput,
-        ISearchUserInput
+        UserType,
+        CreateUserInput,
+        UpdateUserInput,
+        DeleteUserInput,
+        SearchUserInput
       >
     >(GRPC_USER_SERVICE_NAME);
   }
 
-  createOne(data: IEntityOne<ICreateUserInput>): Observable<IUser> {
+  createOne(data: IEntityOne<CreateUserInput>): Observable<UserType> {
     return this.grpcService.createOne(data).pipe(pluck('entity'));
   }
 
-  updateOne(data: IEntityOne<IUpdateUserInput>): Observable<IUser> {
+  updateOne(data: IEntityOne<UpdateUserInput>): Observable<UserType> {
     return this.grpcService.updateOne(data).pipe(pluck('entity'));
   }
 
-  deleteOne(data: IEntityOne<IDeleteUserInput>): Observable<IUser> {
+  deleteOne(data: IEntityOne<DeleteUserInput>): Observable<UserType> {
     return this.grpcService.deleteOne(data).pipe(pluck('entity'));
   }
 
-  searchById(data: IEntityOne<ISearchUserInput>): Observable<IUser> {
+  searchById(data: IEntityOne<SearchUserInput>): Observable<UserType> {
     return this.grpcService.searchById(data).pipe(pluck('entity'));
   }
 
-  searchMany(data: IEntityMany<ISearchUserInput>): Observable<IUser[]> {
+  searchMany(data: IEntityMany<SearchUserInput>): Observable<UserType[]> {
     return this.grpcService.searchMany(data).pipe(pluck('entities'));
   }
 }

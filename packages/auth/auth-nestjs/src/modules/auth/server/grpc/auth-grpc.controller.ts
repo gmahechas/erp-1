@@ -2,8 +2,8 @@ import { Controller } from '@nestjs/common';
 import { GrpcMethod, RpcException } from '@nestjs/microservices';
 
 import {
-  ISigninRequest,
-  ISigninResponse,
+  IAuthSigninRequest,
+  IAuthSigninResponse,
   Password,
   GRPC_AUTH_SERVICE_NAME,
 } from '@gmahechas/common-erp';
@@ -15,7 +15,7 @@ export class AuthGrpcController {
   constructor(private readonly userMongodbService: UserMongodbService) {}
 
   @GrpcMethod(GRPC_AUTH_SERVICE_NAME)
-  async signin(data: ISigninRequest): Promise<ISigninResponse> {
+  async signin(data: IAuthSigninRequest): Promise<IAuthSigninResponse> {
     const { userName, userPassword } = data;
     const user = await this.userMongodbService.searchOneByUsername(userName);
 

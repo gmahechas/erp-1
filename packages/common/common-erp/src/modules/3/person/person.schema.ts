@@ -1,4 +1,4 @@
-import { Schema, Document } from 'mongoose';
+/* import { Schema, Document } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 
 import { IPerson } from './person.interface';
@@ -60,4 +60,4 @@ export interface PersonDocument extends Document, IPerson {
   companyId: string;
   typePersonId: string;
   typeIdentificationId: string;
-}
+} */

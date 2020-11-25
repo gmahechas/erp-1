@@ -21,7 +21,7 @@ async function bootstrap() {
     },
   );
   await app.listen(() =>
-    console.log(`AUTH is listening on port ${config.port}`),
+    console.log(`Auth is listening on port ${config.port}`),
   );
 }
 bootstrap();

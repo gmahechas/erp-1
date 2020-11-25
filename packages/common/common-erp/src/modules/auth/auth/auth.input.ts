@@ -1,8 +1,4 @@
-export interface ISigninRequest {
+export interface IAuthSigninRequest {
   userName: string;
   userPassword: string;
-}
-
-export interface ISigninResponse {
-  successAuthUser: boolean;
 }

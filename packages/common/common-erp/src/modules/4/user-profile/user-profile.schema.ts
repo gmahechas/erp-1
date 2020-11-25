@@ -1,4 +1,4 @@
-import { Schema, Document } from 'mongoose';
+/* import { Schema, Document } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 
 import { IUserProfile } from './user-profile.interface';
@@ -35,4 +35,4 @@ export interface UserProfileDocument extends Document, IUserProfile {
   userProfileStatus: boolean;
   userId: string;
   profileId: string;
-}
+} */

@@ -1,7 +1,9 @@
 import { Field, InputType } from '@nestjs/graphql';
 
+import { IAuthSigninRequest } from '@gmahechas/common-erp';
+
 @InputType()
-export class SigninRequestInput {
+export class AuthSigninRequestInput implements IAuthSigninRequest {
   @Field() userName: string;
   @Field() userPassword: string;
 }
