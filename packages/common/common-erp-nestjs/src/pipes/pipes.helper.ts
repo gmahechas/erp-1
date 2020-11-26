@@ -1,3 +1,4 @@
+import { IErrorResponse } from '@gmahechas/common-erp';
 import { ObjectSchema, ValidationError, ValidationResult } from 'joi';
 
 export function validate(schema: ObjectSchema, values: any): ValidationResult {
@@ -6,9 +7,12 @@ export function validate(schema: ObjectSchema, values: any): ValidationResult {
   });
 }
 
-export function serializeErrors(errors: ValidationError) {
-  return errors.details.map((error) => ({
-    message: error.message,
-    field: error.context?.key,
-  }));
+export function serializeErrors(errors: ValidationError): IErrorResponse {
+  return ({
+    message: 'validation.error',
+    errors: errors.details.map((error) => ({
+      type: error.type,
+      context: error.context,
+    }))
+  })
 }

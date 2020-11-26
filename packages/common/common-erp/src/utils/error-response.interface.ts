@@ -1,4 +1,9 @@
-export interface ErrorResponse {
-    message: string;
-    field?: string;
+interface IJoiError {
+  type: string;
+  context: any;
+}
+
+export interface IErrorResponse {
+  message: string;
+  errors?: IJoiError[];
 }
