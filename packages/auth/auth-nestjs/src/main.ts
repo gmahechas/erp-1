@@ -22,8 +22,7 @@ async function bootstrap() {
     },
   );
   app.useGlobalFilters(new ExceptionFilter());
-  await app.listen(() =>
-    console.log(`Auth is listening on port ${config.port}`),
-  );
+  await app.listenAsync();
+  console.log(`Auth is listening on port ${config.port}`);
 }
 bootstrap();
