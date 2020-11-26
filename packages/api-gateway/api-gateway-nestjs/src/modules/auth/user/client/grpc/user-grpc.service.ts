@@ -1,8 +1,8 @@
 import { Injectable, Inject, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 
-import { Observable } from 'rxjs';
-import { pluck } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { pluck, catchError } from 'rxjs/operators';
 
 import {
   IEntityService,
@@ -10,6 +10,7 @@ import {
   IEntityOne,
   GRPC_AUTH_PACKAGE_NAME,
   GRPC_USER_SERVICE_NAME,
+  grpcErrorsHandler,
 } from '@gmahechas/common-erp';
 
 import { UserType } from '@api-gateway-nestjs/modules/auth/user/server/graphql/user.type';
@@ -47,7 +48,10 @@ export class UserGrpcService implements OnModuleInit {
   }
 
   createOne(data: IEntityOne<CreateUserInput>): Observable<Partial<UserType>> {
-    return this.grpcService.createOne(data).pipe(pluck('entity'));
+    return this.grpcService.createOne(data).pipe(
+      pluck('entity'),
+      catchError((error) => throwError(grpcErrorsHandler(error))),
+    );
   }
 
   updateOne(data: IEntityOne<UpdateUserInput>): Observable<Partial<UserType>> {

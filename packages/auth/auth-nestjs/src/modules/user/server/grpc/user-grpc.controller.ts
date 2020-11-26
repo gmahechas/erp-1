@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, UsePipes } from '@nestjs/common';
 import { GrpcMethod } from '@nestjs/microservices';
 
 import {
@@ -10,7 +10,9 @@ import {
   IEntityOne,
   IUser,
   GRPC_USER_SERVICE_NAME,
+  userJoiSchema,
 } from '@gmahechas/common-erp';
+import { GrpcValidationPipe } from '@gmahechas/common-erp-nestjs';
 
 import { UserMongodbService } from '@auth/modules/user/client/mongodb/user-mongodb.service';
 
@@ -19,6 +21,7 @@ export class UserGrpcController {
   constructor(private readonly userMongodbService: UserMongodbService) {}
 
   @GrpcMethod(GRPC_USER_SERVICE_NAME)
+  @UsePipes(new GrpcValidationPipe(userJoiSchema.create))
   async createOne(
     data: IEntityOne<ICreateUserInput>,
   ): Promise<IEntityOne<IUser>> {
@@ -26,6 +29,7 @@ export class UserGrpcController {
   }
 
   @GrpcMethod(GRPC_USER_SERVICE_NAME)
+  @UsePipes(new GrpcValidationPipe(userJoiSchema.update))
   async updateOne(
     data: IEntityOne<IUpdateUserInput>,
   ): Promise<IEntityOne<IUser>> {
@@ -33,6 +37,7 @@ export class UserGrpcController {
   }
 
   @GrpcMethod(GRPC_USER_SERVICE_NAME)
+  @UsePipes(new GrpcValidationPipe(userJoiSchema.delete))
   async deleteOne(
     data: IEntityOne<IDeleteUserInput>,
   ): Promise<IEntityOne<IUser>> {

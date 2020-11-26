@@ -4,6 +4,7 @@ import { join } from 'path';
 
 import { AppModule } from '@auth/app.module';
 import config from '@auth/utils/config';
+import { ExceptionFilter } from '@gmahechas/common-erp-nestjs';
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
@@ -20,6 +21,7 @@ async function bootstrap() {
       },
     },
   );
+  app.useGlobalFilters(new ExceptionFilter());
   await app.listen(() =>
     console.log(`Auth is listening on port ${config.port}`),
   );

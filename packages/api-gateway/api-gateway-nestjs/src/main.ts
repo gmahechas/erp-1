@@ -1,10 +1,12 @@
 import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import * as fs from 'fs';
+
+import { HttpExceptionFilter } from '@gmahechas/common-erp-nestjs';
 
 import { AppModule } from '@api-gateway-nestjs/app.module';
 
 import config from '@api-gateway-nestjs/utils/config';
-import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -17,6 +19,7 @@ async function bootstrap() {
     cors: true,
   });
   app.set('trust proxy', 1);
+  app.useGlobalFilters(new HttpExceptionFilter());
   await app.listen(config.port, () =>
     console.log(`ApiGateway is listening on port ${config.port}`),
   );

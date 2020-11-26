@@ -1,1 +1,2 @@
-export { JoiValidationPipe } from './joi-validation.pipe';
+export { GraphqlValidationPipe } from './graphql-validation.pipe';
+export { GrpcValidationPipe } from './grpc-validation.pipe';
