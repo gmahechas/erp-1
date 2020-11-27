@@ -55,20 +55,32 @@ export class UserGrpcService implements OnModuleInit {
   }
 
   updateOne(data: IEntityOne<UpdateUserInput>): Observable<Partial<UserType>> {
-    return this.grpcService.updateOne(data).pipe(pluck('entity'));
+    return this.grpcService.updateOne(data).pipe(
+      pluck('entity'),
+      catchError((error) => throwError(grpcErrorsHandler(error))),
+    );
   }
 
   deleteOne(data: IEntityOne<DeleteUserInput>): Observable<Partial<UserType>> {
-    return this.grpcService.deleteOne(data).pipe(pluck('entity'));
+    return this.grpcService.deleteOne(data).pipe(
+      pluck('entity'),
+      catchError((error) => throwError(grpcErrorsHandler(error))),
+    );
   }
 
   searchOne(data: IEntityOne<SearchUserInput>): Observable<Partial<UserType>> {
-    return this.grpcService.searchOne(data).pipe(pluck('entity'));
+    return this.grpcService.searchOne(data).pipe(
+      pluck('entity'),
+      catchError((error) => throwError(grpcErrorsHandler(error))),
+    );
   }
 
   searchMany(
     data: IEntityMany<SearchUserInput>,
   ): Observable<Partial<UserType>[]> {
-    return this.grpcService.searchMany(data).pipe(pluck('entities'));
+    return this.grpcService.searchMany(data).pipe(
+      pluck('entities'),
+      catchError((error) => throwError(grpcErrorsHandler(error))),
+    );
   }
 }

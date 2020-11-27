@@ -10,14 +10,12 @@ export class GrpcValidationPipe implements PipeTransform {
   constructor(private schema: ObjectSchema) { }
 
   transform(values: any) {
-    if (values.entity) {
-      const msValidation = validate(this.schema, values.entity);
-      if (msValidation.error) {
-        const msErrors = serializeErrors(msValidation.error);
-        throw new RpcException({ code: 3, message: JSON.stringify(msErrors) })
-      } else {
-        return values;
-      }
+    const msValidation = validate(this.schema, values.entity);
+    if (msValidation.error) {
+      const msErrors = serializeErrors(msValidation.error);
+      throw new RpcException({ code: 3, message: JSON.stringify(msErrors) })
+    } else {
+      return values;
     }
   }
 }

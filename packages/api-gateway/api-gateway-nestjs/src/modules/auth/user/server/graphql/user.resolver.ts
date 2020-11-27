@@ -1,4 +1,3 @@
-import { UsePipes } from '@nestjs/common';
 import { Resolver, Mutation, Query, Args } from '@nestjs/graphql';
 
 import { Observable } from 'rxjs';
@@ -20,25 +19,25 @@ export class UserResolver {
   constructor(private readonly userGrpcService: UserGrpcService) {}
 
   @Mutation(() => UserType, { name: `createOneUser`, nullable: true })
-  @UsePipes(new GraphqlValidationPipe(userJoiSchema.create))
   createOne(
-    @Args('entity') entity: CreateUserInput,
+    @Args('entity', new GraphqlValidationPipe(userJoiSchema.create))
+    entity: CreateUserInput,
   ): Observable<Partial<UserType>> {
     return this.userGrpcService.createOne({ entity });
   }
 
   @Mutation(() => UserType, { name: `updateOneUser`, nullable: true })
-  @UsePipes(new GraphqlValidationPipe(userJoiSchema.update))
   updateOne(
-    @Args('entity') entity: UpdateUserInput,
+    @Args('entity', new GraphqlValidationPipe(userJoiSchema.update))
+    entity: UpdateUserInput,
   ): Observable<Partial<UserType>> {
     return this.userGrpcService.updateOne({ entity });
   }
 
   @Mutation(() => UserType, { name: `deleteOneUser`, nullable: true })
-  @UsePipes(new GraphqlValidationPipe(userJoiSchema.delete))
   deleteOne(
-    @Args('entity') entity: DeleteUserInput,
+    @Args('entity', new GraphqlValidationPipe(userJoiSchema.delete))
+    entity: DeleteUserInput,
   ): Observable<Partial<UserType>> {
     return this.userGrpcService.deleteOne({ entity });
   }

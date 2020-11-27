@@ -1,4 +1,3 @@
-import { UsePipes } from '@nestjs/common';
 import { Args, Query, Resolver } from '@nestjs/graphql';
 
 import { Observable } from 'rxjs';
@@ -16,9 +15,9 @@ export class AuthResolver {
   constructor(private authGrpcService: AuthGrpcService) {}
 
   @Query(() => AuthSigninResponseType)
-  @UsePipes(new GraphqlValidationPipe(authJoiSchema.signin))
   signin(
-    @Args('data') data: AuthSigninRequestInput,
+    @Args('data', new GraphqlValidationPipe(authJoiSchema.signin))
+    data: AuthSigninRequestInput,
   ): Observable<AuthSigninResponseType> {
     return this.authGrpcService.signin(data).pipe(
       map(({ successAuthUser }) => {

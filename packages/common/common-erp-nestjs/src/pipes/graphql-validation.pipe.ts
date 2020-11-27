@@ -1,4 +1,4 @@
-import { Injectable, PipeTransform } from '@nestjs/common';
+import { Injectable, PipeTransform, Scope } from '@nestjs/common';
 
 import { ObjectSchema, ValidationResult, ValidationError } from 'joi';
 import { RequestValidationError } from '@gmahechas/common-erp';

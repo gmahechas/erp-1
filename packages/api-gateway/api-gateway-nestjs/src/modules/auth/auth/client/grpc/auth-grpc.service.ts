@@ -1,12 +1,14 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import {
   IAuthService,
   GRPC_AUTH_PACKAGE_NAME,
   GRPC_AUTH_SERVICE_NAME,
+  grpcErrorsHandler,
 } from '@gmahechas/common-erp';
 
 import { AuthSigninRequestInput } from '@api-gateway-nestjs/modules/auth/auth/server/graphql/auth.input';
@@ -25,6 +27,8 @@ export class AuthGrpcService implements OnModuleInit {
   }
 
   signin(data: AuthSigninRequestInput): Observable<AuthSigninResponseType> {
-    return this.authService.signin(data);
+    return this.authService
+      .signin(data)
+      .pipe(catchError((error) => throwError(grpcErrorsHandler(error))));
   }
 }
