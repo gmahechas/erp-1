@@ -1,5 +1,5 @@
-import { Body, Controller } from '@nestjs/common';
-import { GrpcMethod } from '@nestjs/microservices';
+import { Controller } from '@nestjs/common';
+import { GrpcMethod, Payload } from '@nestjs/microservices';
 
 import {
   ICreateUserInput,
@@ -22,7 +22,7 @@ export class UserGrpcController {
 
   @GrpcMethod(GRPC_USER_SERVICE_NAME)
   async createOne(
-    @Body('data', new GrpcValidationPipe(userJoiSchema.create))
+    @Payload(new GrpcValidationPipe(userJoiSchema.create))
     data: IEntityOne<ICreateUserInput>,
   ): Promise<IEntityOne<IUser>> {
     return await this.userMongodbService.createOne(data);
@@ -30,7 +30,7 @@ export class UserGrpcController {
 
   @GrpcMethod(GRPC_USER_SERVICE_NAME)
   async updateOne(
-    @Body('data', new GrpcValidationPipe(userJoiSchema.update))
+    @Payload(new GrpcValidationPipe(userJoiSchema.update))
     data: IEntityOne<IUpdateUserInput>,
   ): Promise<IEntityOne<IUser>> {
     return await this.userMongodbService.updateOne(data);
@@ -38,7 +38,7 @@ export class UserGrpcController {
 
   @GrpcMethod(GRPC_USER_SERVICE_NAME)
   async deleteOne(
-    @Body('data', new GrpcValidationPipe(userJoiSchema.delete))
+    @Payload(new GrpcValidationPipe(userJoiSchema.delete))
     data: IEntityOne<IDeleteUserInput>,
   ): Promise<IEntityOne<IUser>> {
     return await this.userMongodbService.deleteOne(data);
@@ -46,14 +46,14 @@ export class UserGrpcController {
 
   @GrpcMethod(GRPC_USER_SERVICE_NAME)
   async searchOne(
-    data: IEntityOne<ISearchUserInput>,
+    @Payload() data: IEntityOne<ISearchUserInput>,
   ): Promise<IEntityOne<IUser>> {
     return await this.userMongodbService.searchOne(data);
   }
 
   @GrpcMethod(GRPC_USER_SERVICE_NAME)
   async searchMany(
-    data: IEntityMany<ISearchUserInput>,
+    @Payload() data: IEntityMany<ISearchUserInput>,
   ): Promise<IEntityMany<IUser>> {
     return await this.userMongodbService.searchMany(data);
   }
