@@ -1,12 +1,14 @@
 import { Controller } from '@nestjs/common';
-import { GrpcMethod, RpcException } from '@nestjs/microservices';
+import { GrpcMethod, Payload, RpcException } from '@nestjs/microservices';
 
 import {
   IAuthSigninRequest,
   IAuthSigninResponse,
   Password,
   GRPC_AUTH_SERVICE_NAME,
+  authJoiSchema,
 } from '@gmahechas/common-erp';
+import { GrpcValidationPipe } from '@gmahechas/common-erp-nestjs';
 
 import { UserMongodbService } from '@auth/modules/user/client/mongodb/user-mongodb.service';
 
@@ -15,14 +17,22 @@ export class AuthGrpcController {
   constructor(private readonly userMongodbService: UserMongodbService) {}
 
   @GrpcMethod(GRPC_AUTH_SERVICE_NAME)
-  async signin(data: IAuthSigninRequest): Promise<IAuthSigninResponse> {
+  async signin(
+    @Payload(new GrpcValidationPipe(authJoiSchema.signin))
+    data: IAuthSigninRequest,
+  ): Promise<IAuthSigninResponse> {
     const { userName, userPassword } = data;
     const { entity } = await this.userMongodbService.searchOne({
       entity: { userName },
     });
 
     if (!entity) {
-      throw new RpcException({ code: 16, message: 'Invalid credentials' });
+      throw new RpcException({
+        code: 16,
+        message: JSON.stringify({
+          message: 'validation.invalid_credentials',
+        }),
+      });
     }
 
     const passwordsMatch = await Password.compare(
@@ -31,7 +41,12 @@ export class AuthGrpcController {
     );
 
     if (!passwordsMatch) {
-      throw new RpcException({ code: 16, message: 'Invalid credentials' });
+      throw new RpcException({
+        code: 16,
+        message: JSON.stringify({
+          message: 'validation.invalid_credentials',
+        }),
+      });
     }
 
     return new Promise((resolve) => resolve({ successAuthUser: true }));

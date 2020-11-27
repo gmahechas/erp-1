@@ -8,6 +8,8 @@ export const grpcErrorsHandler = (grpcError: any): CustomError => {
       return new RequestValidationError(JSON.parse(grpcError.details))
     case 14:
       return new MicroserviceConnectionError()
+    case 16:
+      return new RequestValidationError(JSON.parse(grpcError.details))
     default:
       return new MicroserviceConnectionError()
   }
