@@ -5,4 +5,5 @@ export { IEntityService } from './entity-service.interface';
 export { IErrorResponse } from './error-response.interface'
 export { grpcErrorsHandler } from './grpc-errors';
 export * from './grpc.constants';
+export * from './jwt'
 export { Password } from './password';

@@ -1,14 +1,13 @@
 import { Controller } from '@nestjs/common';
 import { GrpcMethod, Payload, RpcException } from '@nestjs/microservices';
 
-import { sign } from 'jsonwebtoken';
-
 import {
   IAuthSigninRequest,
   IAuthSigninResponse,
   Password,
   GRPC_AUTH_SERVICE_NAME,
   authJoiSchema,
+  getJwt,
 } from '@gmahechas/common-erp';
 import { GrpcValidationPipe } from '@gmahechas/common-erp-nestjs';
 
@@ -51,7 +50,7 @@ export class AuthGrpcController {
       });
     }
 
-    const userJwt = sign(
+    const userJwt = getJwt(
       {
         id: entity.id,
         userName: entity.userName,
@@ -60,13 +59,11 @@ export class AuthGrpcController {
       'AnaLu',
     );
 
-    return new Promise((resolve) =>
-      resolve({
-        id: entity.id,
-        userName: entity.userName,
-        personId: entity.personId,
-        jwt: userJwt,
-      }),
-    );
+    return {
+      id: entity.id,
+      userName: entity.userName,
+      personId: entity.personId,
+      jwt: userJwt,
+    };
   }
 }
