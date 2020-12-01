@@ -1,6 +1,8 @@
 import { Controller } from '@nestjs/common';
 import { GrpcMethod, Payload, RpcException } from '@nestjs/microservices';
 
+import { sign } from 'jsonwebtoken';
+
 import {
   IAuthSigninRequest,
   IAuthSigninResponse,
@@ -49,12 +51,21 @@ export class AuthGrpcController {
       });
     }
 
+    const userJwt = sign(
+      {
+        id: entity.id,
+        userName: entity.userName,
+        personId: entity.personId,
+      },
+      'AnaLu',
+    );
+
     return new Promise((resolve) =>
       resolve({
         id: entity.id,
         userName: entity.userName,
         personId: entity.personId,
-        jwt: 'sjhjkshjks',
+        jwt: userJwt,
       }),
     );
   }
