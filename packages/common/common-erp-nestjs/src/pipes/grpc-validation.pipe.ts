@@ -17,7 +17,7 @@ export class GrpcValidationPipe implements PipeTransform {
       const msErrors = serializeErrors(msValidation.error);
       throw new RpcException({ code: 3, message: JSON.stringify(msErrors) })
     } else {
-      return newValues;
+      return values;
     }
   }
 }
