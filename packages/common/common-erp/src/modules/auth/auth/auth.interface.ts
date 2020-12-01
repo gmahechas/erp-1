@@ -1,3 +1,6 @@
 export interface IAuthSigninResponse {
-  successAuthUser: boolean;
+  id: string;
+  userName: string;
+  personId: string;
+  jwt: string;
 }

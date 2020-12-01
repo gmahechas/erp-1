@@ -10,5 +10,8 @@ export class AuthSigninRequestType implements IAuthSigninRequest {
 
 @ObjectType()
 export class AuthSigninResponseType implements IAuthSigninResponse {
-  @Field() successAuthUser: boolean;
+  @Field() id: string;
+  @Field() userName: string;
+  @Field() personId: string;
+  @Field() jwt: string;
 }

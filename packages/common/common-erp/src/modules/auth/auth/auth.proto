@@ -8,7 +8,10 @@ message SingInRequest {
 }
 
 message SingInResponse{
-  bool successAuthUser = 1;
+  string id = 1;
+  string userName = 2;
+  string personId = 3;
+  string jwt = 4;
 }
 
 service AuthService {

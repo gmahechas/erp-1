@@ -1,7 +1,6 @@
 import { Args, Query, Resolver } from '@nestjs/graphql';
 
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { authJoiSchema } from '@gmahechas/common-erp';
 import { GraphqlValidationPipe } from '@gmahechas/common-erp-nestjs';
@@ -19,11 +18,6 @@ export class AuthResolver {
     @Args('data', new GraphqlValidationPipe(authJoiSchema.signin))
     data: AuthSigninRequestInput,
   ): Observable<AuthSigninResponseType> {
-    return this.authGrpcService.signin(data).pipe(
-      map(({ successAuthUser }) => {
-        console.log(successAuthUser);
-        return { successAuthUser: false };
-      }),
-    );
+    return this.authGrpcService.signin(data);
   }
 }

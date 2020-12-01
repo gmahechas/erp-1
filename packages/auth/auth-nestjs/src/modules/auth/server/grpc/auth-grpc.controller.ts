@@ -49,6 +49,13 @@ export class AuthGrpcController {
       });
     }
 
-    return new Promise((resolve) => resolve({ successAuthUser: true }));
+    return new Promise((resolve) =>
+      resolve({
+        id: entity.id,
+        userName: entity.userName,
+        personId: entity.personId,
+        jwt: 'sjhjkshjks',
+      }),
+    );
   }
 }
