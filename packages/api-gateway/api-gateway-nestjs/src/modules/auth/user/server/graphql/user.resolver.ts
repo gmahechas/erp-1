@@ -13,6 +13,8 @@ import {
   DeleteUserInput,
   SearchUserInput,
 } from '@api-gateway-nestjs/modules/auth/user/server/graphql/user.input';
+import { UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@api-gateway-nestjs/utils/gql-auth.guard';
 
 @Resolver()
 export class UserResolver {
@@ -50,6 +52,7 @@ export class UserResolver {
   }
 
   @Query(() => [UserType], { name: `searchManyUser`, nullable: true })
+  @UseGuards(AuthGuard)
   searchMany(
     @Args('entities', { type: () => [SearchUserInput] })
     entities: [SearchUserInput],
