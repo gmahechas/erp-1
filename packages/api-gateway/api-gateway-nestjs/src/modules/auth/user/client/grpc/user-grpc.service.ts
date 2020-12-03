@@ -5,7 +5,7 @@ import { throwError } from 'rxjs';
 import { pluck, catchError } from 'rxjs/operators';
 
 import {
-  IEntityService,
+  IEntityServiceObservable,
   IEntityMany,
   IEntityOne,
   GRPC_AUTH_PACKAGE_NAME,
@@ -23,7 +23,7 @@ import {
 
 @Injectable()
 export class UserGrpcService implements OnModuleInit {
-  private grpcService: IEntityService<
+  private grpcService: IEntityServiceObservable<
     UserType,
     CreateUserInput,
     UpdateUserInput,
@@ -37,7 +37,7 @@ export class UserGrpcService implements OnModuleInit {
 
   onModuleInit() {
     this.grpcService = this.grpcClient.getService<
-      IEntityService<
+      IEntityServiceObservable<
         UserType,
         CreateUserInput,
         UpdateUserInput,
