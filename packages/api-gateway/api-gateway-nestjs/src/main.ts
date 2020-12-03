@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import redis from '@api-gateway-nestjs/utils/database.modules';
+import redis from '@api-gateway-nestjs/utils/redis';
 
 import { HttpExceptionFilter } from '@gmahechas/common-erp-nestjs';
 

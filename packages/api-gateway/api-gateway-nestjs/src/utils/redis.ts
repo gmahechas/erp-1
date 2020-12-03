@@ -3,13 +3,16 @@ import * as session from 'express-session';
 import * as redis from 'redis';
 
 const RedisStore = connectRedis(session);
-const redisClient = redis.createClient({
+const client = redis.createClient({
   host: '10.1.0.229',
   prefix: 'erp_',
 });
 
+client.on('error', () => console.log('Error connecting to redis'));
+client.on('connect', () => console.log('Connected to redis successfully'));
+
 export default session({
-  store: new RedisStore({ client: redisClient }),
+  store: new RedisStore({ client }),
   name: 'qid',
   secret: 'aslkdfjoiq12312',
   resave: false,
