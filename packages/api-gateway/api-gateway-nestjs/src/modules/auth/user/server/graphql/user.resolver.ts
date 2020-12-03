@@ -1,8 +1,6 @@
 import { UseGuards } from '@nestjs/common';
 import { Resolver, Mutation, Query, Args } from '@nestjs/graphql';
 
-import { Observable } from 'rxjs';
-
 import { userJoiSchema } from '@gmahechas/common-erp';
 import { GraphqlValidationPipe } from '@gmahechas/common-erp-nestjs';
 
@@ -25,7 +23,7 @@ export class UserResolver {
   createOne(
     @Args('entity', new GraphqlValidationPipe(userJoiSchema.create))
     entity: CreateUserInput,
-  ): Observable<Partial<UserType>> {
+  ): Promise<Partial<UserType>> {
     return this.userGrpcService.createOne({ entity });
   }
 
@@ -33,7 +31,7 @@ export class UserResolver {
   updateOne(
     @Args('entity', new GraphqlValidationPipe(userJoiSchema.update))
     entity: UpdateUserInput,
-  ): Observable<Partial<UserType>> {
+  ): Promise<Partial<UserType>> {
     return this.userGrpcService.updateOne({ entity });
   }
 
@@ -41,14 +39,14 @@ export class UserResolver {
   deleteOne(
     @Args('entity', new GraphqlValidationPipe(userJoiSchema.delete))
     entity: DeleteUserInput,
-  ): Observable<Partial<UserType>> {
+  ): Promise<Partial<UserType>> {
     return this.userGrpcService.deleteOne({ entity });
   }
 
   @Query(() => UserType, { name: `searchOneUser`, nullable: true })
   searchOne(
     @Args('entity') entity: SearchUserInput,
-  ): Observable<Partial<UserType>> {
+  ): Promise<Partial<UserType>> {
     return this.userGrpcService.searchOne({ entity });
   }
 
@@ -56,7 +54,7 @@ export class UserResolver {
   searchMany(
     @Args('entities', { type: () => [SearchUserInput] })
     entities: [SearchUserInput],
-  ): Observable<Partial<UserType>[]> {
+  ): Promise<Partial<UserType>[]> {
     return this.userGrpcService.searchMany({ entities });
   }
 }

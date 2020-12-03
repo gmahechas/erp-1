@@ -15,16 +15,13 @@ export class AuthResolver {
   constructor(private authGrpcService: AuthGrpcService) {}
 
   @Query(() => AuthSigninResponseType)
-  signin(
+  async signin(
     @Args('data', new GraphqlValidationPipe(authJoiSchema.signin))
     data: AuthSigninRequestInput,
     @Context() context: any,
-  ): Observable<AuthSigninResponseType> {
-    return this.authGrpcService.signin(data).pipe(
-      tap((response) => {
-        context.req.session.auth = response;
-        return response;
-      }),
-    );
+  ): Promise<AuthSigninResponseType> {
+    const authSigninResponse = await this.authGrpcService.signin(data);
+    context.req.session.auth = authSigninResponse;
+    return authSigninResponse;
   }
 }

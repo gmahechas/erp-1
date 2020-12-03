@@ -1,7 +1,7 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 
-import { Observable, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import {
@@ -26,9 +26,10 @@ export class AuthGrpcService implements OnModuleInit {
     );
   }
 
-  signin(data: AuthSigninRequestInput): Observable<AuthSigninResponseType> {
-    return this.authService
+  async signin(data: AuthSigninRequestInput): Promise<AuthSigninResponseType> {
+    return await this.authService
       .signin(data)
-      .pipe(catchError((error) => throwError(grpcErrorsHandler(error))));
+      .pipe(catchError((error) => throwError(grpcErrorsHandler(error))))
+      .toPromise();
   }
 }

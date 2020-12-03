@@ -1,7 +1,7 @@
 import { Injectable, Inject, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 
-import { Observable, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 import { pluck, catchError } from 'rxjs/operators';
 
 import {
@@ -47,40 +47,63 @@ export class UserGrpcService implements OnModuleInit {
     >(GRPC_USER_SERVICE_NAME);
   }
 
-  createOne(data: IEntityOne<CreateUserInput>): Observable<Partial<UserType>> {
-    return this.grpcService.createOne(data).pipe(
-      pluck('entity'),
-      catchError((error) => throwError(grpcErrorsHandler(error))),
-    );
+  async createOne(
+    data: IEntityOne<CreateUserInput>,
+  ): Promise<Partial<UserType>> {
+    return await this.grpcService
+      .createOne(data)
+      .pipe(
+        pluck('entity'),
+        catchError((error) => throwError(grpcErrorsHandler(error))),
+      )
+      .toPromise();
   }
 
-  updateOne(data: IEntityOne<UpdateUserInput>): Observable<Partial<UserType>> {
-    return this.grpcService.updateOne(data).pipe(
-      pluck('entity'),
-      catchError((error) => throwError(grpcErrorsHandler(error))),
-    );
+  async updateOne(
+    data: IEntityOne<UpdateUserInput>,
+  ): Promise<Partial<UserType>> {
+    return await this.grpcService
+      .updateOne(data)
+      .pipe(
+        pluck('entity'),
+        catchError((error) => throwError(grpcErrorsHandler(error))),
+      )
+      .toPromise();
   }
 
-  deleteOne(data: IEntityOne<DeleteUserInput>): Observable<Partial<UserType>> {
-    return this.grpcService.deleteOne(data).pipe(
-      pluck('entity'),
-      catchError((error) => throwError(grpcErrorsHandler(error))),
-    );
+  async deleteOne(
+    data: IEntityOne<DeleteUserInput>,
+  ): Promise<Partial<UserType>> {
+    return await this.grpcService
+      .deleteOne(data)
+      .pipe(
+        pluck('entity'),
+        catchError((error) => throwError(grpcErrorsHandler(error))),
+      )
+      .toPromise();
   }
 
-  searchOne(data: IEntityOne<SearchUserInput>): Observable<Partial<UserType>> {
-    return this.grpcService.searchOne(data).pipe(
-      pluck('entity'),
-      catchError((error) => throwError(grpcErrorsHandler(error))),
-    );
+  async searchOne(
+    data: IEntityOne<SearchUserInput>,
+  ): Promise<Partial<UserType>> {
+    return await this.grpcService
+      .searchOne(data)
+      .pipe(
+        pluck('entity'),
+        catchError((error) => throwError(grpcErrorsHandler(error))),
+      )
+      .toPromise();
   }
 
-  searchMany(
+  async searchMany(
     data: IEntityMany<SearchUserInput>,
-  ): Observable<Partial<UserType>[]> {
-    return this.grpcService.searchMany(data).pipe(
-      pluck('entities'),
-      catchError((error) => throwError(grpcErrorsHandler(error))),
-    );
+  ): Promise<Partial<UserType>[]> {
+    return await this.grpcService
+      .searchMany(data)
+      .pipe(
+        pluck('entities'),
+        catchError((error) => throwError(grpcErrorsHandler(error))),
+      )
+      .toPromise();
   }
 }
