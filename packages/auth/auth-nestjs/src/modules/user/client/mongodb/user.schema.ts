@@ -34,12 +34,12 @@ export const userSchema = new Schema(
   },
 );
 
-userSchema.pre('save', async function (done) {
+userSchema.pre('save', async function (next) {
   if (this.isModified('userPassword')) {
     const hashed = await Password.toHash(this.get('userPassword'));
     this.set('userPassword', hashed);
   }
-  done();
+  next();
 });
 
 export interface UserDocument extends Document, IUser {
