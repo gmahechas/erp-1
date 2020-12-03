@@ -4,10 +4,12 @@ import {
   CustomError,
   DatabaseConnectionError,
   MicroserviceConnectionError,
-  RequestValidationError
+  UnAuthorizedError,
+  RequestValidationError,
+  UnAuthenticatedError
 } from '@gmahechas/common-erp';
 
-@Catch(DatabaseConnectionError, RequestValidationError, MicroserviceConnectionError)
+@Catch(DatabaseConnectionError, RequestValidationError, MicroserviceConnectionError, UnAuthorizedError, UnAuthenticatedError)
 export class HttpExceptionFilter implements ExceptionFilter {
   catch(exception: CustomError, host: ArgumentsHost) {
     return exception;

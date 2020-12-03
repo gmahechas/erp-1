@@ -7,6 +7,6 @@ export class MicroserviceConnectionError extends CustomError {
   }
 
   serializeErrors() {
-    return { message: 'Error connecting to microservice' };
+    return { message: 'error.microservice' };
   };
 }

@@ -9,7 +9,7 @@ export function validate(schema: ObjectSchema, values: any): ValidationResult {
 
 export function serializeErrors(errors: ValidationError): IErrorResponse {
   return ({
-    message: 'validation.error',
+    message: 'error.validation',
     errors: errors.details.map((error) => ({
       type: error.type,
       context: error.context,

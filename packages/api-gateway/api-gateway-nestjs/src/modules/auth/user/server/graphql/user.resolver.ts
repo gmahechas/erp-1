@@ -1,3 +1,4 @@
+import { UseGuards } from '@nestjs/common';
 import { Resolver, Mutation, Query, Args } from '@nestjs/graphql';
 
 import { Observable } from 'rxjs';
@@ -5,6 +6,7 @@ import { Observable } from 'rxjs';
 import { userJoiSchema } from '@gmahechas/common-erp';
 import { GraphqlValidationPipe } from '@gmahechas/common-erp-nestjs';
 
+import { AuthGuard } from '@api-gateway-nestjs/utils/gql-auth.guard';
 import { UserGrpcService } from '@api-gateway-nestjs/modules/auth/user/client/grpc/user-grpc.service';
 import { UserType } from '@api-gateway-nestjs/modules/auth/user/server/graphql/user.type';
 import {
@@ -13,10 +15,9 @@ import {
   DeleteUserInput,
   SearchUserInput,
 } from '@api-gateway-nestjs/modules/auth/user/server/graphql/user.input';
-import { UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@api-gateway-nestjs/utils/gql-auth.guard';
 
 @Resolver()
+@UseGuards(AuthGuard)
 export class UserResolver {
   constructor(private readonly userGrpcService: UserGrpcService) {}
 
@@ -52,7 +53,6 @@ export class UserResolver {
   }
 
   @Query(() => [UserType], { name: `searchManyUser`, nullable: true })
-  @UseGuards(AuthGuard)
   searchMany(
     @Args('entities', { type: () => [SearchUserInput] })
     entities: [SearchUserInput],

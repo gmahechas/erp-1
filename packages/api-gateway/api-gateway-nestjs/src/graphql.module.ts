@@ -14,6 +14,10 @@ import { CustomError } from '@gmahechas/common-erp';
         const originalError = error.originalError as CustomError;
         return originalError.serializeErrors();
       },
+      cors: {
+        credentials: true,
+        origin: true,
+      },
     }),
   ],
 })

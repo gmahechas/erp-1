@@ -13,5 +13,5 @@ export class AuthSigninResponseType implements IAuthSigninResponse {
   @Field() id: string;
   @Field() userName: string;
   @Field() personId: string;
-  @Field() jwt: string;
+  jwt: string;
 }
