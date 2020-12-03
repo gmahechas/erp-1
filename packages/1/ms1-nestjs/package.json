@@ -1,7 +1,7 @@
 {
-  "name": "auth-nestjs",
-  "version": "0.0.2",
-  "description": "auth-nestjs",
+  "name": "ms1-nestjs",
+  "version": "0.0.0",
+  "description": "ms1-nestjs",
   "author": "gmahechas",
   "private": true,
   "license": "UNLICENSED",
@@ -78,7 +78,7 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
     "moduleNameMapper": {
-      "@auth/(.*)$": "<rootDir>/$1"
+      "@ms1/(.*)$": "<rootDir>/$1"
     }
   }
 }
