@@ -1,7 +1,7 @@
 {
-  "name": "ms1-nestjs",
-  "version": "0.0.0",
-  "description": "ms1-nestjs",
+  "name": "ms4-nestjs",
+  "version": "0.0.4",
+  "description": "ms4-nestjs",
   "author": "gmahechas",
   "private": true,
   "license": "UNLICENSED",
@@ -78,7 +78,7 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
     "moduleNameMapper": {
-      "@ms1/(.*)$": "<rootDir>/$1"
+      "@ms4/(.*)$": "<rootDir>/$1"
     }
   }
 }
