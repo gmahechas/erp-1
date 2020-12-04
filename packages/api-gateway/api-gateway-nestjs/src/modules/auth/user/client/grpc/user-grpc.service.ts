@@ -2,7 +2,7 @@ import { Injectable, Inject, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 
 import { throwError } from 'rxjs';
-import { pluck, catchError } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 import {
   IEntityServiceObservable,
@@ -49,61 +49,46 @@ export class UserGrpcService implements OnModuleInit {
 
   async createOne(
     data: IEntityOne<CreateUserInput>,
-  ): Promise<Partial<UserType>> {
+  ): Promise<IEntityOne<UserType>> {
     return await this.grpcService
       .createOne(data)
-      .pipe(
-        pluck('entity'),
-        catchError((error) => throwError(grpcErrorsHandler(error))),
-      )
+      .pipe(catchError((error) => throwError(grpcErrorsHandler(error))))
       .toPromise();
   }
 
   async updateOne(
     data: IEntityOne<UpdateUserInput>,
-  ): Promise<Partial<UserType>> {
+  ): Promise<IEntityOne<UserType>> {
     return await this.grpcService
       .updateOne(data)
-      .pipe(
-        pluck('entity'),
-        catchError((error) => throwError(grpcErrorsHandler(error))),
-      )
+      .pipe(catchError((error) => throwError(grpcErrorsHandler(error))))
       .toPromise();
   }
 
   async deleteOne(
     data: IEntityOne<DeleteUserInput>,
-  ): Promise<Partial<UserType>> {
+  ): Promise<IEntityOne<UserType>> {
     return await this.grpcService
       .deleteOne(data)
-      .pipe(
-        pluck('entity'),
-        catchError((error) => throwError(grpcErrorsHandler(error))),
-      )
+      .pipe(catchError((error) => throwError(grpcErrorsHandler(error))))
       .toPromise();
   }
 
   async searchOne(
     data: IEntityOne<SearchUserInput>,
-  ): Promise<Partial<UserType>> {
+  ): Promise<IEntityOne<UserType>> {
     return await this.grpcService
       .searchOne(data)
-      .pipe(
-        pluck('entity'),
-        catchError((error) => throwError(grpcErrorsHandler(error))),
-      )
+      .pipe(catchError((error) => throwError(grpcErrorsHandler(error))))
       .toPromise();
   }
 
   async searchMany(
     data: IEntityMany<SearchUserInput>,
-  ): Promise<Partial<UserType>[]> {
+  ): Promise<IEntityMany<UserType>> {
     return await this.grpcService
       .searchMany(data)
-      .pipe(
-        pluck('entities'),
-        catchError((error) => throwError(grpcErrorsHandler(error))),
-      )
+      .pipe(catchError((error) => throwError(grpcErrorsHandler(error))))
       .toPromise();
   }
 }
