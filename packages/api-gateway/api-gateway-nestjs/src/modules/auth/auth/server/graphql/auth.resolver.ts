@@ -1,8 +1,5 @@
 import { Args, Context, Query, Resolver } from '@nestjs/graphql';
 
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-
 import { authJoiSchema } from '@gmahechas/common-erp';
 import { GraphqlValidationPipe } from '@gmahechas/common-erp-nestjs';
 
