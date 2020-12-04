@@ -4,7 +4,7 @@ import { GqlExecutionContext } from '@nestjs/graphql';
 import { UnAuthenticatedError } from '@gmahechas/common-erp';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class GqlAuthGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
     const gqlContext = GqlExecutionContext.create(context).getContext();
     if (!gqlContext.req.session.auth) {
