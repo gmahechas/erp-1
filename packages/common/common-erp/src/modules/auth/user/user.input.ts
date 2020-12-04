@@ -1,14 +1,6 @@
-import { IUser } from './user.interface';
-
 export interface ICreateUserInput {
   userName: string;
   userPassword: string;
-  personId: string;
-}
-
-export interface ISearchUserInput {
-  id: string;
-  userName: string;
   personId: string;
 }
 
@@ -21,4 +13,10 @@ export interface IUpdateUserInput {
 
 export interface IDeleteUserInput {
   id: string;
+}
+
+export interface ISearchUserInput {
+  id: string;
+  userName: string;
+  personId: string;
 }
