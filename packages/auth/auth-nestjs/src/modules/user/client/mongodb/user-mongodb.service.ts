@@ -23,8 +23,8 @@ export class UserMongodbService extends BaseMongodbService<
 >() {
   constructor(
     @InjectModel(GRPC_USER_SERVICE_NAME)
-    private readonly entityModel: Model<UserDocument>,
+    private readonly userModel: Model<UserDocument>,
   ) {
-    super(entityModel);
+    super(userModel);
   }
 }

@@ -23,6 +23,6 @@ service UserProfileService {
   rpc CreateOne (IEntityOne) returns (IEntityOne) {}
   rpc UpdateOne (IEntityOne) returns (IEntityOne) {}
   rpc DeleteOne (IEntityOne) returns (IEntityOne) {}
-  rpc SearchById (IEntityOne) returns (IEntityOne) {}
+  rpc SearchOne (IEntityOne) returns (IEntityOne) {}
   rpc SearchMany (IEntityMany) returns (IEntityMany) {}
 }

@@ -1,7 +1,7 @@
 import { DynamicModule } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
-import config from '@auth/utils/config';
+import config from '@ms1/utils/config';
 
 export const databasesModules: DynamicModule[] = [
   MongooseModule.forRootAsync({

@@ -1,19 +1,19 @@
-export interface ICreatePersonInput {
+export interface ICreateTypePersonInput {
   typePersonDescription: string;
   typePersonCode: string;
 }
 
-export interface IUpdatePersonInput {
+export interface IUpdateTypePersonInput {
   id: string;
   typePersonDescription: string;
   typePersonCode: string;
 }
 
-export interface IDeletePersonInput {
+export interface IDeleteTypePersonInput {
   id: string;
 }
 
-export interface ISearchPersonInput {
+export interface ISearchTypePersonInput {
   id: string;
   typePersonDescription: string;
   typePersonCode: string;
