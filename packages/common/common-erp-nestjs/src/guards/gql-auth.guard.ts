@@ -8,6 +8,7 @@ export class GqlAuthGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
     const gqlContext = GqlExecutionContext.create(context).getContext();
     if (!gqlContext.req.session.auth) {
+      gqlContext.res.clearCookie('qid');
       throw new UnAuthenticatedError();
     }
     return true;

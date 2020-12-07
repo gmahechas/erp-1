@@ -4,7 +4,7 @@ import { GrpcMethod, Payload, RpcException } from '@nestjs/microservices';
 import {
   IAuthSigninRequest,
   IAuthSigninResponse,
-  Password,
+  compareHash,
   GRPC_AUTH_SERVICE_NAME,
   authJoiSchema,
   getJwt,
@@ -36,10 +36,7 @@ export class AuthGrpcController {
       });
     }
 
-    const passwordsMatch = await Password.compare(
-      userPassword,
-      entity.userPassword,
-    );
+    const passwordsMatch = await compareHash(userPassword, entity.userPassword);
 
     if (!passwordsMatch) {
       throw new RpcException({

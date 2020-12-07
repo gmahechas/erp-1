@@ -8,4 +8,4 @@ export { grpcErrorsHandler } from './grpc-errors';
 export * from './grpc.constants';
 export { JoiSchema } from './joi-schema.interface';
 export * from './jwt'
-export { Password } from './password';
+export { toHash, compareHash } from './password';

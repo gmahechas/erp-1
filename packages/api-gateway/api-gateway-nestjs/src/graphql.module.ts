@@ -14,6 +14,7 @@ import { CustomError } from '@gmahechas/common-erp';
         const originalError = error.originalError as CustomError;
         return originalError.serializeErrors();
       },
+      context: ({ req, res }) => ({ req, res }),
       cors: {
         credentials: true,
         origin: true,
