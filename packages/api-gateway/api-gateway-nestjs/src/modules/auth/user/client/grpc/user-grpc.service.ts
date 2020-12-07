@@ -1,12 +1,17 @@
 import { Injectable, Inject, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
 import {
   IEntityServiceObservable,
+  IEntityMany,
+  IEntityOne,
   GRPC_AUTH_PACKAGE_NAME,
   GRPC_USER_SERVICE_NAME,
+  grpcErrorsHandler,
 } from '@gmahechas/common-erp';
-import { BaseGrpcService } from '@gmahechas/common-erp-nestjs';
 
 import { UserType } from '@api-gateway-nestjs/modules/auth/user/server/graphql/user.type';
 import {
@@ -17,9 +22,7 @@ import {
 } from '@api-gateway-nestjs/modules/auth/user/server/graphql/user.input';
 
 @Injectable()
-export class UserGrpcService
-  extends BaseGrpcService(GRPC_USER_SERVICE_NAME)
-  implements OnModuleInit {
+export class UserGrpcService implements OnModuleInit {
   private grpcService: IEntityServiceObservable<
     UserType,
     CreateUserInput,
@@ -30,9 +33,7 @@ export class UserGrpcService
 
   constructor(
     @Inject(GRPC_AUTH_PACKAGE_NAME) private readonly grpcClient: ClientGrpc,
-  ) {
-    super(grpcClient);
-  }
+  ) {}
 
   onModuleInit() {
     this.grpcService = this.grpcClient.getService<
@@ -44,5 +45,50 @@ export class UserGrpcService
         SearchUserInput
       >
     >(GRPC_USER_SERVICE_NAME);
+  }
+
+  async createOne(
+    data: IEntityOne<CreateUserInput>,
+  ): Promise<IEntityOne<UserType>> {
+    return await this.grpcService
+      .createOne(data)
+      .pipe(catchError((error) => throwError(grpcErrorsHandler(error))))
+      .toPromise();
+  }
+
+  async updateOne(
+    data: IEntityOne<UpdateUserInput>,
+  ): Promise<IEntityOne<UserType>> {
+    return await this.grpcService
+      .updateOne(data)
+      .pipe(catchError((error) => throwError(grpcErrorsHandler(error))))
+      .toPromise();
+  }
+
+  async deleteOne(
+    data: IEntityOne<DeleteUserInput>,
+  ): Promise<IEntityOne<UserType>> {
+    return await this.grpcService
+      .deleteOne(data)
+      .pipe(catchError((error) => throwError(grpcErrorsHandler(error))))
+      .toPromise();
+  }
+
+  async searchOne(
+    data: IEntityOne<SearchUserInput>,
+  ): Promise<IEntityOne<UserType>> {
+    return await this.grpcService
+      .searchOne(data)
+      .pipe(catchError((error) => throwError(grpcErrorsHandler(error))))
+      .toPromise();
+  }
+
+  async searchMany(
+    data: IEntityMany<SearchUserInput>,
+  ): Promise<IEntityMany<UserType>> {
+    return await this.grpcService
+      .searchMany(data)
+      .pipe(catchError((error) => throwError(grpcErrorsHandler(error))))
+      .toPromise();
   }
 }
