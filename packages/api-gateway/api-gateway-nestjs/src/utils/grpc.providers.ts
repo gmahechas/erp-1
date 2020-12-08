@@ -1,6 +1,9 @@
 import { Provider } from '@nestjs/common';
 
-import { GRPC_AUTH_PACKAGE_NAME } from '@gmahechas/common-erp';
+import {
+  GRPC_AUTH_PACKAGE_NAME,
+  GRPC_MS1_PACKAGE_NAME,
+} from '@gmahechas/common-erp';
 
 import { baseGrpc } from '@api-gateway-nestjs/utils/base.grpc';
 
@@ -12,7 +15,7 @@ export const grpcAuth: Provider = baseGrpc(GRPC_AUTH_PACKAGE_NAME, {
   },
 });
 
-export const grpcMs1: Provider = baseGrpc('1_PACKAGE', {
+export const grpcMs1: Provider = baseGrpc(GRPC_MS1_PACKAGE_NAME, {
   options: {
     url: 'ms1-service.ms1-namespace.svc.cluster.local:50001',
     package: ['country', 'estate', 'city', 'address'],
