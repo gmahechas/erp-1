@@ -2,7 +2,7 @@ export interface ICreateMenuInput {
   menuName: string;
   menuDescription: string;
   menuUri: string;
-  menuOrder: string;
+  menuOrder: number;
   menuIdParent: string;
 }
 
@@ -11,7 +11,7 @@ export interface IUpdateMenuInput {
   menuName: string;
   menuDescription: string;
   menuUri: string;
-  menuOrder: string;
+  menuOrder: number;
   menuIdParent: string;
 }
 
@@ -24,6 +24,6 @@ export interface ISearchMenuInput {
   menuName: string;
   menuDescription: string;
   menuUri: string;
-  menuOrder: string;
+  menuOrder: number;
   menuIdParent: string;
 }

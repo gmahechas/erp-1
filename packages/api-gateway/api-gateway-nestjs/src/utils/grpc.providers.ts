@@ -3,6 +3,9 @@ import { Provider } from '@nestjs/common';
 import {
   GRPC_AUTH_PACKAGE_NAME,
   GRPC_MS1_PACKAGE_NAME,
+  GRPC_MS2_PACKAGE_NAME,
+  GRPC_MS3_PACKAGE_NAME,
+  GRPC_MS4_PACKAGE_NAME,
 } from '@gmahechas/common-erp';
 
 import { baseGrpc } from '@api-gateway-nestjs/utils/base.grpc';
@@ -23,7 +26,7 @@ export const grpcMs1: Provider = baseGrpc(GRPC_MS1_PACKAGE_NAME, {
   },
 });
 
-export const grpcMs2: Provider = baseGrpc('2_PACKAGE', {
+export const grpcMs2: Provider = baseGrpc(GRPC_MS2_PACKAGE_NAME, {
   options: {
     url: 'ms2-service.ms2-namespace.svc.cluster.local:50002',
     package: ['company', 'office'],
@@ -31,7 +34,7 @@ export const grpcMs2: Provider = baseGrpc('2_PACKAGE', {
   },
 });
 
-export const grpcMs3: Provider = baseGrpc('3_PACKAGE', {
+export const grpcMs3: Provider = baseGrpc(GRPC_MS3_PACKAGE_NAME, {
   options: {
     url: 'ms3-service.ms3-namespace.svc.cluster.local:50003',
     package: ['type_person', 'type_identification', 'person'],
@@ -39,7 +42,7 @@ export const grpcMs3: Provider = baseGrpc('3_PACKAGE', {
   },
 });
 
-export const grpcMs4: Provider = baseGrpc('4_PACKAGE', {
+export const grpcMs4: Provider = baseGrpc(GRPC_MS4_PACKAGE_NAME, {
   options: {
     url: 'ms4-service.ms4-namespace.svc.cluster.local:50004',
     package: ['menu', 'profile', 'profile_menu', 'user_profile'],
