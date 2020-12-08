@@ -3,14 +3,14 @@ import { JoiSchema } from '../../../utils/joi-schema.interface';
 
 const createEstateSchema = object({
   estateName: Joi.string().min(3).max(30).required(),
-  estateCode: Joi.string().min(2).max(3).required(),
+  estateCode: Joi.string().min(2).max(4).required(),
   countryId: Joi.string().required()
 });
 
 const updateEstateSchema = object({
   id: Joi.string().required(),
   estateName: Joi.string().min(3).max(30),
-  estateCode: Joi.string().min(2).max(3),
+  estateCode: Joi.string().min(2).max(4),
   countryId: Joi.string()
 });
 
