@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>0.0.3 (2020-12-09)</small>
+
+* refactor: rename modules ([34edcaf](https://github.com/gmahechas/erp/commit/34edcaf))
+
+
+
+
+
 ## <small>0.0.2 (2020-12-03)</small>
 
 * refactor: jwt to common ([1859899](https://github.com/gmahechas/erp/commit/1859899))

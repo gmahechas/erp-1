@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>0.0.4 (2020-12-09)</small>
+
+* feat: base controller grpc and service were create ([6796d1c](https://github.com/gmahechas/erp/commit/6796d1c))
+* feat: base resolver ([1d0c5be](https://github.com/gmahechas/erp/commit/1d0c5be))
+* feat: base-grpc.service added ([c14c8c3](https://github.com/gmahechas/erp/commit/c14c8c3))
+* feat: ms1 added ([fe1b37d](https://github.com/gmahechas/erp/commit/fe1b37d))
+* refactor: function programming passwrod and delete cookie ([8367b8c](https://github.com/gmahechas/erp/commit/8367b8c))
+* refactor: move gql-auth.guard to common nestjs ([6b1bc7d](https://github.com/gmahechas/erp/commit/6b1bc7d))
+* fix: fix mongoose version ([e8e4c11](https://github.com/gmahechas/erp/commit/e8e4c11))
+
+
+
+
+
 ## <small>0.0.3 (2020-12-03)</small>
 
 * feat: auth ([1eaa305](https://github.com/gmahechas/erp/commit/1eaa305))

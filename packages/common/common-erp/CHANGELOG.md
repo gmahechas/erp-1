@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>0.0.4 (2020-12-09)</small>
+
+* fix: fix validations ([9ea58a7](https://github.com/gmahechas/erp/commit/9ea58a7))
+* feat: add modules ([d8ba449](https://github.com/gmahechas/erp/commit/d8ba449))
+* feat: added input to all ms ([8857a7d](https://github.com/gmahechas/erp/commit/8857a7d))
+* feat: api migrated ([1c9aa45](https://github.com/gmahechas/erp/commit/1c9aa45))
+* feat: base controller grpc and service were create ([6796d1c](https://github.com/gmahechas/erp/commit/6796d1c))
+* feat: ms1 added ([915ad91](https://github.com/gmahechas/erp/commit/915ad91))
+* refactor: function programming passwrod and delete cookie ([8367b8c](https://github.com/gmahechas/erp/commit/8367b8c))
+
+
+
+
+
 ## <small>0.0.3 (2020-12-03)</small>
 
 * refactor: jwt to common ([1859899](https://github.com/gmahechas/erp/commit/1859899))
