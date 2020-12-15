@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>0.0.5 (2020-12-15)</small>
+
+* feat: fix tsconfig ([193e572](https://github.com/gmahechas/erp/commit/193e572))
+
+
+
+
+
 ## <small>0.0.4 (2020-12-09)</small>
 
 * feat: base controller grpc and service were create ([6796d1c](https://github.com/gmahechas/erp/commit/6796d1c))
