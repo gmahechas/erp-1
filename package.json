@@ -8,8 +8,9 @@
     "lerna": "lerna",
     "commit": "git-cz",
     "build": "lerna run build --stream",
-    "start:dev": "lerna run start:dev --stream",
-    "start:prod": "lerna run start:prod --stream",
+    "reactjs:start": "lerna run start --stream",
+    "nestjs:start:dev": "lerna run start:dev --stream",
+    "nestjs:start:prod": "lerna run start:prod --stream",
     "test": "lerna run test --stream"
   },
   "devDependencies": {
