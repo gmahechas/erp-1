@@ -1,3 +1,6 @@
+const path = require('path');
+const postcssNormalize = require('postcss-normalize');
+
 module.exports = function (webpackEnv) {
   const isEnvDevelopment = webpackEnv === 'development';
 
@@ -7,6 +10,25 @@ module.exports = function (webpackEnv) {
       {
         loader: 'css-loader',
         options: cssOptions,
+      },
+      {
+        loader: 'postcss-loader',
+        options: {
+          postcssOptions: {
+            plugins: [
+              [
+                'postcss-preset-env',
+                {
+                  autoprefixer: {
+                    flexbox: 'no-2009',
+                  },
+                  stage: 3,
+                },
+              ],
+              postcssNormalize()
+            ]
+          }
+        }
       }
     ]
     if (preProcessor) {
@@ -25,6 +47,9 @@ module.exports = function (webpackEnv) {
 
   return {
     resolve: {
+      alias: {
+        '@mf-1': path.resolve(__dirname, '..', 'src/')
+      },
       extensions: ['.tsx', '.ts', '.jsx', '.js'],
     },
     module: {

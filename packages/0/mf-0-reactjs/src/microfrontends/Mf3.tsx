@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { FC } from 'react';
 
-import styles from './Mf3.module.css';
+interface IProps {}
+const Mf3: FC<IProps> = () => {
+  return <div>Mf3</div>;
+};
 
-const Mf3 = () => {
-  return <div className={styles.jum}>Mf3</div>;
-}
-
-export default Mf3
+export default Mf3;
