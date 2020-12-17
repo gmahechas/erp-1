@@ -92,6 +92,9 @@ module.exports = function (webpackEnv) {
               use: getStyleLoaders({
                 importLoaders: 1,
                 sourceMap: isEnvDevelopment ? true : false,
+                modules: {
+                  localIdentName: isEnvDevelopment ? '[name]__[local]--[hash:base64:5]' : '[hash:base64:5]',
+                }
               }, true)
             },
             {
