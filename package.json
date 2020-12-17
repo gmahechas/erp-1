@@ -7,14 +7,13 @@
   "scripts": {
     "lerna": "lerna",
     "commit": "git-cz",
-    "build": "lerna run build --stream",
-    "reactjs:start": "lerna run start --stream",
-    "nestjs:start:dev": "lerna run start:dev --stream",
-    "nestjs:start:prod": "lerna run start:prod --stream",
-    "test": "lerna run test --stream"
+    "start:mf": "lerna run start --stream",
+    "start:ms:dev": "lerna run start:dev --stream",
+    "build": "lerna run build --stream"
   },
   "devDependencies": {
     "conventional-changelog": "^3.1.24",
+    "file-loader": "^6.2.0",
     "git-cz": "^4.7.4",
     "lerna": "^3.22.1"
   }
