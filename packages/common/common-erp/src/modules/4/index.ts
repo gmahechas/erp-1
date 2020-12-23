@@ -1,4 +1,3 @@
-export * from './menu';
-export * from './profile';
-export * from './profile-menu';
-export * from './user-profile';
+export * from './type-person';
+export * from './type-identification';
+export * from './person';

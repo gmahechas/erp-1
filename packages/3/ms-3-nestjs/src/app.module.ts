@@ -1,16 +1,10 @@
 import { Module } from '@nestjs/common';
 
 import { databasesModules } from '@ms-3/utils/database.modules';
-import { TypePersonModule } from '@ms-3/modules/type-person/type-person.module';
-import { TypeIdentificationModule } from '@ms-3/modules/type-identification/type-identification.module';
-import { PersonModule } from '@ms-3/modules/person/person.module';
+import { CompanyModule } from '@ms-3/modules/company/company.module';
+import { OfficeModule } from '@ms-3/modules/office/office.module';
 
 @Module({
-  imports: [
-    ...databasesModules,
-    TypePersonModule,
-    TypeIdentificationModule,
-    PersonModule,
-  ],
+  imports: [...databasesModules, CompanyModule, OfficeModule],
 })
 export class AppModule {}

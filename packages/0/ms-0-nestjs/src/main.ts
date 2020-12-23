@@ -14,7 +14,7 @@ async function bootstrap() {
   app.use(redis);
   app.useGlobalFilters(new HttpExceptionFilter());
   await app.listen(config.port, () =>
-    console.log(`ApiGateway is listening on port ${config.port}`),
+    console.log(`MS-0 is listening on port ${config.port}`),
   );
 }
 bootstrap();

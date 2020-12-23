@@ -1,18 +1,16 @@
 import { Module } from '@nestjs/common';
 
 import { databasesModules } from '@ms-4/utils/database.modules';
-import { MenuModule } from '@ms-4/modules/menu/menu.module';
-import { ProfileModule } from '@ms-4/modules/profile/profile.module';
-import { ProfileMenuModule } from '@ms-4/modules/profile-menu/profile-menu.module';
-import { UserProfileModule } from '@ms-4/modules/user-profile/user-profile.module';
+import { TypePersonModule } from '@ms-4/modules/type-person/type-person.module';
+import { TypeIdentificationModule } from '@ms-4/modules/type-identification/type-identification.module';
+import { PersonModule } from '@ms-4/modules/person/person.module';
 
 @Module({
   imports: [
     ...databasesModules,
-    MenuModule,
-    ProfileModule,
-    ProfileMenuModule,
-    UserProfileModule,
+    TypePersonModule,
+    TypeIdentificationModule,
+    PersonModule,
   ],
 })
 export class AppModule {}

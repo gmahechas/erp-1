@@ -1,6 +1,5 @@
 syntax = "proto3";
 
-import public "menu/menu.proto";
-import public "profile/profile.proto";
-import public "profile-menu/profile-menu.proto";
-import public "user-profile/user-profile.proto";
+import public "person/person.proto";
+import public "type-identification/type-identification.proto";
+import public "type-person/type-person.proto";

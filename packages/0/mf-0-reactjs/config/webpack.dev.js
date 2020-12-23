@@ -8,10 +8,10 @@ const devConfig = {
   devtool: 'eval-cheap-module-source-map',
   output: {
     filename: '[name].[contenthash].js',
-    publicPath: 'http://localhost:8080/',
+    publicPath: 'http://localhost:8000/',
   },
   devServer: {
-    port: 8080,
+    port: 8000,
     historyApiFallback: {
       index: 'index.html',
     },

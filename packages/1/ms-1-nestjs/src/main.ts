@@ -13,7 +13,7 @@ async function bootstrap() {
       transport: Transport.GRPC,
       options: {
         url: '0.0.0.0:'.concat(config.port),
-        package: ['country', 'estate', 'city', 'address'],
+        package: ['user', 'auth'],
         protoPath: join(
           __dirname,
           '../node_modules/@gmahechas/common-erp/src/modules/1/index.proto',
@@ -23,6 +23,6 @@ async function bootstrap() {
   );
   app.useGlobalFilters(new ExceptionFilter());
   await app.listenAsync();
-  console.log(`MS1 is listening on port ${config.port}`);
+  console.log(`MS-1 is listening on port ${config.port}`);
 }
 bootstrap();

@@ -1,3 +1,2 @@
-export * from './type-person';
-export * from './type-identification';
-export * from './person';
+export * from './company'
+export * from './office';

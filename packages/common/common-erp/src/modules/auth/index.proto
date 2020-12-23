@@ -1,4 +1,0 @@
-syntax = "proto3";
-
-import public "user/user.proto";
-import public "auth/auth.proto";

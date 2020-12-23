@@ -1,4 +1,6 @@
 syntax = "proto3";
 
-import public "company/company.proto";
-import public "office/office.proto";
+import public "country/country.proto";
+import public "estate/estate.proto";
+import public "city/city.proto";
+import public "address/address.proto";

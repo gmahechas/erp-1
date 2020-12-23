@@ -4,6 +4,7 @@ import { join } from 'path';
 
 import { AppModule } from '@ms-3/app.module';
 import config from '@ms-3/utils/config';
+import { ExceptionFilter } from '@gmahechas/common-erp-nestjs';
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
@@ -12,7 +13,7 @@ async function bootstrap() {
       transport: Transport.GRPC,
       options: {
         url: '0.0.0.0:'.concat(config.port),
-        package: ['type_person', 'type_identification', 'person'],
+        package: ['company', 'office'],
         protoPath: join(
           __dirname,
           '../node_modules/@gmahechas/common-erp/src/modules/3/index.proto',
@@ -20,8 +21,8 @@ async function bootstrap() {
       },
     },
   );
-  await app.listen(() =>
-    console.log(`MS3 is listening on port ${config.port}`),
-  );
+  app.useGlobalFilters(new ExceptionFilter());
+  await app.listenAsync();
+  console.log(`MS-3 is listening on port ${config.port}`);
 }
 bootstrap();

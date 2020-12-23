@@ -1,18 +1,10 @@
 import { Module } from '@nestjs/common';
 
 import { databasesModules } from '@ms-1/utils/database.modules';
-import { CountryModule } from '@ms-1/modules/country/country.module';
-import { EstateModule } from '@ms-1/modules/estate/estate.module';
-import { CityModule } from '@ms-1/modules/city/city.module';
-import { AddressModule } from '@ms-1/modules/address/address.module';
+import { UserModule } from '@ms-1/modules/user/user.module';
+import { AuthModule } from '@ms-1/modules/auth/auth.module';
 
 @Module({
-  imports: [
-    ...databasesModules,
-    CountryModule,
-    EstateModule,
-    CityModule,
-    AddressModule,
-  ],
+  imports: [...databasesModules, UserModule, AuthModule],
 })
 export class AppModule {}
