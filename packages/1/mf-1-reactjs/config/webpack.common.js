@@ -48,7 +48,7 @@ module.exports = function (webpackEnv) {
   return {
     resolve: {
       alias: {
-        '@mf-0': path.resolve(__dirname, '..', 'src/')
+        '@mf-1': path.resolve(__dirname, '..', 'src/')
       },
       extensions: ['.tsx', '.ts', '.jsx', '.js'],
     },

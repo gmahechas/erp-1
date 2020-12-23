@@ -22,7 +22,7 @@
     "pretty": true,
     "baseUrl": "./",
     "paths": {
-      "@mf-0/*" : ["src/*"]
+      "@mf-1/*" : ["src/*"]
     }
   },
   "include": [
