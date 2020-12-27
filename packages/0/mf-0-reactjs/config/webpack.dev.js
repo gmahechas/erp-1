@@ -2,6 +2,7 @@ const { merge } = require('webpack-merge');
 const commonConfig = require('./webpack.common');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const packageJson = require('../package.json');
 
 const devConfig = {
   mode: 'development',
@@ -23,7 +24,8 @@ const devConfig = {
       remotes: {
         mf1: 'mf1@http://localhost:8001/remoteEntry.js',
         mf2: 'mf2@http://localhost:8002/remoteEntry.js',
-      }
+      },
+      shared: packageJson.dependencies
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html'
