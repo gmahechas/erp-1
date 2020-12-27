@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import FragmentHco from '@mf-0/utils/hoc/FragmentHco';
 import AppBarHoc from '@mf-0/utils/material/AppBarHoc';
@@ -10,9 +11,8 @@ const HeaderCore = () => {
     <FragmentHco>
       <AppBarHoc position='static'>
         <ToolBarHoc variant='dense' disableGutters>
-          <ButtonHoc variant='contained' color='secondary' size='small'>
-            Primer Boton
-          </ButtonHoc>
+          <Link to="/mf1">MF1</Link>
+          <Link to="/mf2">MF2</Link>
         </ToolBarHoc>
       </AppBarHoc>
     </FragmentHco>

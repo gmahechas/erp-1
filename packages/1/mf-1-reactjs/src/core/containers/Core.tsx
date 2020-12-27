@@ -1,22 +1,27 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import { Grid } from '@material-ui/core';
 
-import HeaderCore from '@mf-1/core/components/HeaderCore';
-import FragmentHco from '@mf-1/utils/hoc/FragmentHco';
+const Auth = lazy(() => import('@mf-1/modules/auth/containers/Auth'));
+const User = lazy(() => import('@mf-1/modules/user/containers/User'));
 
 const Core = () => {
   return (
-    <FragmentHco>
+    <BrowserRouter>
       <Grid container>
-        <Grid item md={12}>
-          <HeaderCore />
-        </Grid>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            <Route path='/user'>
+              <User />
+            </Route>
+            <Route path='/auth'>
+              <Auth />
+            </Route>
+          </Switch>
+        </Suspense>
       </Grid>
-      <Grid container>
-        MF 1
-      </Grid>
-    </FragmentHco>
+    </BrowserRouter>
   );
 };
 

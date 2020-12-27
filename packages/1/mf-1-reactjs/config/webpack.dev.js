@@ -1,10 +1,11 @@
 const { merge } = require('webpack-merge');
 const commonConfig = require('./webpack.common');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const devConfig = {
   mode: 'development',
-  entry: './src/index.tsx',
+  entry: './src/index.ts',
   devtool: 'eval-cheap-module-source-map',
   output: {
     filename: '[name].[contenthash].js',
@@ -17,6 +18,13 @@ const devConfig = {
     },
   },
   plugins: [
+    new ModuleFederationPlugin({
+      name: 'mf1',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './Mf1App': './src/bootstrap',
+      }
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),

@@ -1,34 +1,38 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import { Grid } from '@material-ui/core';
 
-import Mf1 from '@mf-0/microfrontends/Mf1';
-import Mf2 from '@mf-0/microfrontends/Mf2';
-import Mf3 from '@mf-0/microfrontends/Mf3';
 import HeaderCore from '@mf-0/core/components/HeaderCore';
-import FragmentHco from '@mf-0/utils/hoc/FragmentHco';
+
+const Mf1 = lazy(() => import('@mf-0/microfrontends/Mf1'));
+const Mf2 = lazy(() => import('@mf-0/microfrontends/Mf2'));
 
 const Core = () => {
   return (
-    <FragmentHco>
+    <BrowserRouter>
       <Grid container>
         <Grid item md={12}>
           <HeaderCore />
         </Grid>
       </Grid>
       <Grid container>
-        <Grid item md={4}>
-          <Mf1 />
-        </Grid>
-        <Grid item md={4}>
-          <Mf2 />
-        </Grid>
-        <Grid item md={4}>
-          <Mf3 />
-          <a href="#">Hola a todos</a>
-        </Grid>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            <Route path='/mf1'>
+              <Grid item md={12}>
+                <Mf1 />
+              </Grid>
+            </Route>
+            <Route path='/mf2'>
+              <Grid item md={12}>
+                <Mf2 />
+              </Grid>
+            </Route>
+          </Switch>
+        </Suspense>
       </Grid>
-    </FragmentHco>
+    </BrowserRouter>
   );
 };
 

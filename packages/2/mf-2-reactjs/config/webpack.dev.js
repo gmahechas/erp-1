@@ -9,20 +9,20 @@ const devConfig = {
   devtool: 'eval-cheap-module-source-map',
   output: {
     filename: '[name].[contenthash].js',
-    publicPath: 'http://localhost:8000/',
+    publicPath: 'http://localhost:8002/',
   },
   devServer: {
-    port: 8000,
+    port: 8002,
     historyApiFallback: {
       index: 'index.html',
     },
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'mf0',
-      remotes: {
-        mf1: 'mf1@http://localhost:8001/remoteEntry.js',
-        mf2: 'mf2@http://localhost:8002/remoteEntry.js',
+      name: 'mf2',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './Mf2App': './src/bootstrap',
       }
     }),
     new HtmlWebpackPlugin({
