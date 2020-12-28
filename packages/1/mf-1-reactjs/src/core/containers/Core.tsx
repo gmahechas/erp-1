@@ -8,21 +8,21 @@ const User = lazy(() => import('@mf-1/modules/user/containers/User'));
 
 const Core = () => {
   return (
-    <BrowserRouter>
-      <Grid container>
+    <Grid container>
+      <BrowserRouter>
         mf1
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
             <Route path='/user'>
               <User />
             </Route>
-            <Route path='/auth'>
+            <Route path='/'>
               <Auth />
             </Route>
           </Switch>
         </Suspense>
-      </Grid>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Grid>
   );
 };
 

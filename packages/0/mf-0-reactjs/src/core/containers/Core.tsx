@@ -4,35 +4,40 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 
 import HeaderCore from '@mf-0/core/components/HeaderCore';
+import Dashboard from '@mf-0/core/containers/Dashboard';
 
-const Mf1 = lazy(() => import('@mf-0/microfrontends/Mf1'));
-const Mf2 = lazy(() => import('@mf-0/microfrontends/Mf2'));
+const Auth = lazy(() => import('@mf-0/modules/1/auth/containers/Auth'));
+const User = lazy(() => import('@mf-0/modules/1/user/containers/User'));
 
 const Core = () => {
   return (
-    <BrowserRouter>
-      <Grid container>
+    <Grid container>
+      <BrowserRouter>
         <Grid item md={12}>
           <HeaderCore />
         </Grid>
-      </Grid>
-      <Grid container>
+
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
-            <Route path='/mf1'>
+            <Route path='/user'>
               <Grid item md={12}>
-                <Mf1 />
+                <User />
               </Grid>
             </Route>
-            <Route path='/mf2'>
+            <Route path='/auth'>
               <Grid item md={12}>
-                <Mf2 />
+                <Auth />
+              </Grid>
+            </Route>
+            <Route path='/'>
+              <Grid item md={12}>
+                <Dashboard />
               </Grid>
             </Route>
           </Switch>
         </Suspense>
-      </Grid>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Grid>
   );
 };
 

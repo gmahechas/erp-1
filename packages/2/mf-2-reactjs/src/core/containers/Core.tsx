@@ -10,27 +10,26 @@ const Address = lazy(() => import('@mf-2/modules/address/containers/Address'));
 
 const Core = () => {
   return (
-    <BrowserRouter>
-      <Grid container>
-        mf2
+    <Grid container>
+      <BrowserRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
-            <Route path='/country'>
-              <Country />
-            </Route>
-            <Route path='/estate'>
-              <Estate />
+            <Route path='/address'>
+              <Address />
             </Route>
             <Route path='/city'>
               <City />
             </Route>
-            <Route path='/address'>
-              <Address />
+            <Route path='/estate'>
+              <Estate />
+            </Route>
+            <Route path='/'>
+              <Country />
             </Route>
           </Switch>
         </Suspense>
-      </Grid>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Grid>
   );
 };
 

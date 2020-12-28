@@ -6,7 +6,7 @@ const User = () => {
   return (
     <FragmentHco>
       <div>User</div>
-      <Link to='/auth'>Link to Auth</Link>
+      <Link to='/'>Link to Auth</Link>
     </FragmentHco>
   );
 };
