@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const packageJson = require('../package.json');
 const commonConfig = require('./webpack.common');
 
-const domain = process.env.PROD_DOMAIN;
+const domain = process.env.ERP_PRODUCTION_DOMAIN;
 
 const prodConfig = {
   mode: 'production',
@@ -18,8 +18,8 @@ const prodConfig = {
     new ModuleFederationPlugin({
       name: 'mf0',
       remotes: {
-        mf1: `mf1@${domain}/mf1/remoteEntry.js`,
-        mf2: `mf2@${domain}/mf2/remoteEntry.js`,
+        mf1: `mf1@${domain}/1/mf-1-reactjs/latest/remoteEntry.js`,
+        mf2: `mf2@${domain}/2/mf-2-reactjs/latest/remoteEntry.js`,
       },
       shared: packageJson.dependencies
     }),

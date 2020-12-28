@@ -12,6 +12,7 @@ const Core = () => {
   return (
     <BrowserRouter>
       <Grid container>
+        mf2
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
             <Route path='/country'>

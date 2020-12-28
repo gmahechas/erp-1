@@ -10,7 +10,7 @@ const prodConfig = {
   // devtool: '',
   output: {
     filename: '[name].[contenthash].js',
-    publicPath: '/'
+    publicPath: '/2/mf-2-reactjs/latest/'
   },
   plugins: [
     new ModuleFederationPlugin({

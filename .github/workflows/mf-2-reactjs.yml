@@ -1,15 +1,15 @@
-name: deploy-mf-0-reactjs
+name: deploy-mf-2-reactjs
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'packages/0/mf-0-reactjs/**'
+      - 'packages/2/mf-2-reactjs/**'
 
 defaults:
   run:
-    working-directory: packages/0/mf-0-reactjs
+    working-directory: packages/2/mf-2-reactjs
 
 jobs:
   build:
@@ -18,8 +18,6 @@ jobs:
       -  uses: actions/checkout@v2
       -  run: yarn install
       -  run: yarn build
-         env:
-          ERP_PRODUCTION_DOMAIN: ${{ secrets.ERP_PRODUCTION_DOMAIN }}
 
       - name: Configure AWS credentials from Production account
         uses: aws-actions/configure-aws-credentials@v1
@@ -30,5 +28,5 @@ jobs:
 
       - name: Copy files to the production website with the AWS CLI and Create Invalidations
         run: |
-          aws s3 sync dist s3://${{ secrets.AWS_S3_ERP_BUCKET_NAME }}/0/mf-0-reactjs/latest
-          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/0/mf-0-reactjs/latest/index.html"
+          aws s3 sync dist s3://${{ secrets.AWS_S3_ERP_BUCKET_NAME }}/2/mf-2-reactjs/latest
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/2/mf-2-reactjs/latest/remoteEntry.js"
