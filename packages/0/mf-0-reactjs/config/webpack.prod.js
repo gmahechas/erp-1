@@ -11,7 +11,7 @@ const prodConfig = {
   entry: './src/index.ts',
   // devtool: '',
   output: {
-    filename: '[name].[contenthash:8].js',
+    filename: '[name].[contenthash].js',
     publicPath: '/O/mf-0-reactjs/latest/'
   },
   plugins: [
