@@ -11,8 +11,8 @@ const HeaderCore = () => {
     <FragmentHco>
       <AppBarHoc position='static'>
         <ToolBarHoc variant='dense' disableGutters>
-          <Link to="/mf1">MF1</Link>
-          <Link to="/mf2">MF2</Link>
+          <Link to="/mf1">MF-1</Link>
+          <Link to="/mf2">MF-2</Link>
         </ToolBarHoc>
       </AppBarHoc>
     </FragmentHco>
