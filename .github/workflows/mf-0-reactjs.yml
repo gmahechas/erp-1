@@ -33,4 +33,4 @@ jobs:
 
       - name: Copy files to the production website with the AWS CLI
         run: |
-          aws s3 sync dist s3://${{ secrets.AWS_S3_ERP_BUCKET_NAME }}/mf-0/latest
+          aws s3 sync dist s3://${{ secrets.AWS_S3_ERP_BUCKET_NAME }}/mf-0-reactjs/latest
