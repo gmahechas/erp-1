@@ -34,4 +34,4 @@ jobs:
       - name: Copy files to the production website with the AWS CLI and Create Invalidations
         run: |
           aws s3 sync dist s3://${{ secrets.AWS_S3_ERP_BUCKET_NAME }}/0/mf-0-reactjs/latest
-          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/0/ms-0-reactjs/latest/index.html"
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/0/mf-0-reactjs/latest/index.html"
