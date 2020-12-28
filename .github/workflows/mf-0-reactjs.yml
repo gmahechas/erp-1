@@ -1,4 +1,4 @@
-name: deplay-mf-0
+name: deploy-mf-0-reactjs
 
 on:
   push:
