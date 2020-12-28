@@ -1,3 +1,4 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const postcssNormalize = require('postcss-normalize');
 
@@ -132,6 +133,11 @@ module.exports = function (webpackEnv) {
           ]
         }
       ],
-    }
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: './public/index.html'
+      }),
+    ]
   }
 };
