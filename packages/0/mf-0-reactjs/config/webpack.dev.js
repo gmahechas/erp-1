@@ -23,6 +23,7 @@ const devConfig = {
       remotes: {
         mf1: 'mf1@http://localhost:8001/remoteEntry.js',
         mf2: 'mf2@http://localhost:8002/remoteEntry.js',
+        mf3: 'mf3@http://localhost:8003/remoteEntry.js',
       },
       shared: packageJson.dependencies
     }),

@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { mount } from 'mf1/Mf1App';
 
 interface IProps {}
-const Mf1: FC<IProps> = (props) => {
+const Mf1: FC<IProps> = () => {
   const ref = useRef(null);
   const history = useHistory();
 
@@ -20,6 +20,7 @@ const Mf1: FC<IProps> = (props) => {
     });
     history.listen(onParentNavigate);
   }, []);
+  
   return <div ref={ref} />;
 };
 

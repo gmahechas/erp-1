@@ -4,10 +4,7 @@ import { History, MemoryHistory } from 'history';
 
 import { Grid } from '@material-ui/core';
 
-const Country = lazy(() => import('@mf-2/modules/country/containers/Country'));
-const Estate = lazy(() => import('@mf-2/modules/estate/containers/Estate'));
-const City = lazy(() => import('@mf-2/modules/city/containers/City'));
-const Address = lazy(() => import('@mf-2/modules/address/containers/Address'));
+const Dashboard = lazy(() => import('@mf-2/modules/dashboard/Dashboard'));
 
 interface IProps {
   history: History | MemoryHistory;
@@ -20,10 +17,7 @@ const Core: FC<IProps> = ({ history }) => {
         <Grid item md={12}>
           <Suspense fallback={<div>Loading...</div>}>
             <Switch>
-              <Route path='/address' component={Address} />
-              <Route path='/city' component={City} />
-              <Route path='/estate' component={Estate} />
-              <Route path='/country' component={Country} />
+              <Route path='/' component={Dashboard} />
             </Switch>
           </Suspense>
         </Grid>

@@ -5,7 +5,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## <small>0.0.2 (2020-12-15)</small>
 
-**Note:** Version bump only for package ms-3-nestjs
+**Note:** Version bump only for package ms-2-nestjs
 
 
 

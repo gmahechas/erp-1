@@ -1,0 +1,32 @@
+name: deploy-mf-2-reactjs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/3/mf-3-reactjs/**'
+
+defaults:
+  run:
+    working-directory: packages/3/mf-3-reactjs
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      -  uses: actions/checkout@v2
+      -  run: yarn install
+      -  run: yarn build
+
+      - name: Configure AWS credentials from Production account
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_CLI_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_CLI_SECRET_KEY_ID }}
+          aws-region: us-east-2
+
+      - name: Copy files to the production website with the AWS CLI and Create Invalidations
+        run: |
+          aws s3 sync dist s3://${{ secrets.AWS_S3_ERP_BUCKET_NAME }}/3/mf-3-reactjs/latest
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/3/mf-3-reactjs/latest/remoteEntry.js"

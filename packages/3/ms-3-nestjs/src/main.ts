@@ -13,7 +13,7 @@ async function bootstrap() {
       transport: Transport.GRPC,
       options: {
         url: '0.0.0.0:'.concat(config.port),
-        package: ['company', 'office'],
+        package: ['country', 'estate', 'city', 'address'],
         protoPath: join(
           __dirname,
           '../node_modules/@gmahechas/common-erp/src/modules/3/index.proto',

@@ -6,9 +6,9 @@ import config from '@ms-4/utils/config';
 export const databasesModules: DynamicModule[] = [
   MongooseModule.forRootAsync({
     useFactory: async () => ({
-      uri: await config.mongodb_uri,
-      user: await config.mongodb_user,
-      pass: await config.mongodb_pass,
+      uri: config.mongodb_uri,
+      user: config.mongodb_user,
+      pass: config.mongodb_pass,
       useNewUrlParser: true,
       useUnifiedTopology: true,
     }),
