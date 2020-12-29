@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>0.0.5 (2020-12-29)</small>
+
+* refactor: mf dashboard create ([722b2ce](https://github.com/gmahechas/erp/commit/722b2ce))
+* refactor: rename modules ([93979c0](https://github.com/gmahechas/erp/commit/93979c0))
+
+
+
+
+
 ## <small>0.0.4 (2020-12-15)</small>
 
 * refactor: rename api-gateway ([34b2608](https://github.com/gmahechas/erp/commit/34b2608))
