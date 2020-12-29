@@ -15,26 +15,20 @@ interface IProps {
 
 const Core: FC<IProps> = ({ history }) => {
   return (
-    <Grid container>
-      <Router history={history}>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Switch>
-            <Route path='/address'>
-              <Address />
-            </Route>
-            <Route path='/city'>
-              <City />
-            </Route>
-            <Route path='/estate'>
-              <Estate />
-            </Route>
-            <Route path='/country'>
-              <Country />
-            </Route>
-          </Switch>
-        </Suspense>
-      </Router>
-    </Grid>
+    <Router history={history}>
+      <Grid container>
+        <Grid item md={12}>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Switch>
+              <Route path='/address' component={Address} />
+              <Route path='/city' component={City} />
+              <Route path='/estate' component={Estate} />
+              <Route path='/country' component={Country} />
+            </Switch>
+          </Suspense>
+        </Grid>
+      </Grid>
+    </Router>
   );
 };
 

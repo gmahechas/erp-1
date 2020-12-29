@@ -10,33 +10,20 @@ const Mf1 = lazy(() => import('@mf-0/microfrontends/Mf1'));
 
 const Core = () => {
   return (
-    <Grid container>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Grid container>
         <Grid item md={12}>
           <HeaderCore />
         </Grid>
-
-        <Suspense fallback={<div>Loading...</div>}>
-          <Switch>
-            <Route path='/user'>
-              <Grid item md={12}>
-                <Mf1 />
-              </Grid>
-            </Route>
-            <Route path='/auth'>
-              <Grid item md={12}>
-                <Mf1 />
-              </Grid>
-            </Route>
-            <Route path='/'>
-              <Grid item md={12}>
-                <Dashboard />
-              </Grid>
-            </Route>
-          </Switch>
-        </Suspense>
-      </BrowserRouter>
-    </Grid>
+      </Grid>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Switch>
+          <Route path='/user' component={Mf1} />
+          <Route path='/auth' component={Mf1} />
+          <Route path='/' component={Dashboard} />
+        </Switch>
+      </Suspense>
+    </BrowserRouter>
   );
 };
 
