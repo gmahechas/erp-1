@@ -1,5 +1,6 @@
-import React, { lazy, Suspense } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import React, { FC, lazy, Suspense } from 'react';
+import { Router, Switch, Route } from 'react-router-dom';
+import { History, MemoryHistory } from 'history';
 
 import { Grid } from '@material-ui/core';
 
@@ -8,10 +9,14 @@ const Estate = lazy(() => import('@mf-2/modules/estate/containers/Estate'));
 const City = lazy(() => import('@mf-2/modules/city/containers/City'));
 const Address = lazy(() => import('@mf-2/modules/address/containers/Address'));
 
-const Core = () => {
+interface IProps {
+  history: History | MemoryHistory;
+}
+
+const Core: FC<IProps> = ({ history }) => {
   return (
     <Grid container>
-      <BrowserRouter>
+      <Router history={history}>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
             <Route path='/address'>
@@ -23,12 +28,12 @@ const Core = () => {
             <Route path='/estate'>
               <Estate />
             </Route>
-            <Route path='/'>
+            <Route path='/country'>
               <Country />
             </Route>
           </Switch>
         </Suspense>
-      </BrowserRouter>
+      </Router>
     </Grid>
   );
 };

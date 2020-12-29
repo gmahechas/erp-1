@@ -1,22 +1,58 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {
+  createBrowserHistory,
+  History,
+  createMemoryHistory,
+  MemoryHistory,
+  Location,
+} from 'history';
 
 import '@mf-2/index.css';
 import Core from '@mf-2/core/containers/Core';
 
-const mount = (element: HTMLElement) => {
+const mount = (
+  element: HTMLElement,
+  {
+    onNavigate,
+    defaultHistory,
+    initialPath,
+  }: {
+    onNavigate?: () => void;
+    defaultHistory: History | MemoryHistory;
+    initialPath: string;
+  }
+) => {
+  const history =
+    defaultHistory ||
+    createMemoryHistory({
+      initialEntries: [initialPath],
+    });
+  if (onNavigate) {
+    history.listen(onNavigate);
+  }
+
   ReactDOM.render(
     <React.StrictMode>
-      <Core />
+      <Core history={history} />
     </React.StrictMode>,
     element
   );
+
+  return {
+    onParentNavigate({ pathname: nextPathname }: Location) {
+      const { pathname } = history.location;
+      if (pathname !== nextPathname) {
+        history.push(nextPathname);
+      }
+    },
+  };
 };
 
 if (process.env.NODE_ENV === 'development') {
   const element = document.getElementById('_mf-2-root');
   if (element) {
-    mount(element);
+    mount(element, { defaultHistory: createBrowserHistory(), initialPath: '' });
   }
 }
 

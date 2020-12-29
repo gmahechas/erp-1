@@ -6,8 +6,7 @@ import { Grid } from '@material-ui/core';
 import HeaderCore from '@mf-0/core/components/HeaderCore';
 import Dashboard from '@mf-0/core/containers/Dashboard';
 
-const Auth = lazy(() => import('@mf-0/modules/1/auth/containers/Auth'));
-const User = lazy(() => import('@mf-0/modules/1/user/containers/User'));
+const Mf1 = lazy(() => import('@mf-0/microfrontends/Mf1'));
 
 const Core = () => {
   return (
@@ -21,12 +20,12 @@ const Core = () => {
           <Switch>
             <Route path='/user'>
               <Grid item md={12}>
-                <User />
+                <Mf1 />
               </Grid>
             </Route>
             <Route path='/auth'>
               <Grid item md={12}>
-                <Auth />
+                <Mf1 />
               </Grid>
             </Route>
             <Route path='/'>
