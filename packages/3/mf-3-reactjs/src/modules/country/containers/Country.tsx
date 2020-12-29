@@ -7,7 +7,7 @@ const Country = () => {
   return (
     <FragmentHco>
       <div>Country</div>
-      <Link to='/estate'>Link to Estate</Link>
+      <Link to='/estate'>Link Estate</Link>
     </FragmentHco>
   );
 };

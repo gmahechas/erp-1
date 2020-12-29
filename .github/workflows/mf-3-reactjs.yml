@@ -1,4 +1,4 @@
-name: deploy-mf-2-reactjs
+name: deploy-mf-3-reactjs
 
 on:
   push:

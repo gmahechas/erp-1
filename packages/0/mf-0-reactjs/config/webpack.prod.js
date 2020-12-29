@@ -20,7 +20,7 @@ const prodConfig = {
       remotes: {
         mf1: `mf1@${domain}/1/mf-1-reactjs/latest/remoteEntry.js`,
         mf2: `mf2@${domain}/2/mf-2-reactjs/latest/remoteEntry.js`,
-        mf2: `mf3@${domain}/3/mf-3-reactjs/latest/remoteEntry.js`,
+        mf3: `mf3@${domain}/3/mf-3-reactjs/latest/remoteEntry.js`,
       },
       shared: packageJson.dependencies
     }),
