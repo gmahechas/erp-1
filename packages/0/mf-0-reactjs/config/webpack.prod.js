@@ -9,10 +9,11 @@ const domain = process.env.ERP_PRODUCTION_DOMAIN;
 const prodConfig = {
   mode: 'production',
   entry: './src/index.ts',
-  // devtool: '',
   output: {
-    filename: '[name].[contenthash].js',
-    publicPath: '/0/mf-0-reactjs/latest/'
+    filename: '[name].[contenthash:8].js',
+    publicPath: '/0/mf-0-reactjs/latest/',
+    chunkFilename: '[name].[contenthash:8].chunk.js',
+    globalObject: 'this'
   },
   plugins: [
     new ModuleFederationPlugin({

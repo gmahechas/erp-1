@@ -7,10 +7,11 @@ const packageJson = require('../package.json');
 const prodConfig = {
   mode: 'production',
   entry: './src/index.ts',
-  // devtool: '',
   output: {
-    filename: '[name].[contenthash].js',
-    publicPath: '/2/mf-2-reactjs/latest/'
+    filename: '[name].[contenthash:8].js',
+    publicPath: '/2/mf-2-reactjs/latest/',
+    chunkFilename: '[name].[contenthash:8].chunk.js',
+    globalObject: 'this'
   },
   plugins: [
     new ModuleFederationPlugin({

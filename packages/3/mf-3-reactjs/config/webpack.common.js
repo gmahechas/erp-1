@@ -1,18 +1,22 @@
 const path = require('path');
 const postcssNormalize = require('postcss-normalize');
 
+const paths = require('./paths');
+const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
+
 module.exports = function (webpackEnv) {
   const isEnvDevelopment = webpackEnv === 'development';
+  const isEnvProduction = webpackEnv === 'production';
 
   const getStyleLoaders = (cssOptions, preProcessor) => {
     const loaders = [
-      'style-loader',
+      isEnvDevelopment && require.resolve('style-loader'),
       {
-        loader: 'css-loader',
+        loader: require.resolve('css-loader'),
         options: cssOptions,
       },
       {
-        loader: 'postcss-loader',
+        loader: require.resolve('postcss-loader'),
         options: {
           postcssOptions: {
             plugins: [
@@ -26,18 +30,19 @@ module.exports = function (webpackEnv) {
                 },
               ],
               postcssNormalize()
-            ]
+            ],
+            sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
           }
         }
       }
-    ]
+    ].filter(Boolean);
     if (preProcessor) {
       loaders.push({
         loader: 'sass-loader',
         options: {
           sassOptions: {
             importLoaders: 3,
-            sourceMap: isEnvDevelopment ? true : false
+            sourceMap: true
           }
         }
       })
@@ -52,6 +57,12 @@ module.exports = function (webpackEnv) {
       },
       extensions: ['.tsx', '.ts', '.jsx', '.js'],
     },
+    bail: isEnvProduction,
+    devtool: isEnvProduction
+      ? shouldUseSourceMap
+        ? 'source-map'
+        : false
+      : isEnvDevelopment && 'cheap-module-source-map',
     module: {
       strictExportPresence: true,
       rules: [
@@ -60,7 +71,7 @@ module.exports = function (webpackEnv) {
           oneOf: [
             {
               test: [/\.avif$/],
-              loader: 'url-loader',
+              loader: require.resolve('url-loader'),
               options: {
                 mimetype: 'image/avif',
                 name: 'static/media/[name].[hash:8].[ext]',
@@ -68,19 +79,20 @@ module.exports = function (webpackEnv) {
             },
             {
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-              loader: 'url-loader',
+              loader: require.resolve('url-loader'),
               options: {
                 name: 'static/media/[name].[hash:8].[ext]',
               },
             },
             {
               test: /\.(tsx?|jsx?)$/,
-              exclude: /node_modules/,
-              use: {
-                loader: 'babel-loader',
-                options: {
-                  presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript']
-                },
+              include: paths.appSrc,
+              loader: require.resolve('babel-loader'),
+              options: {
+                presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
+                cacheDirectory: true,
+                cacheCompression: false,
+                compact: isEnvProduction,
               },
             },
             {
@@ -88,7 +100,9 @@ module.exports = function (webpackEnv) {
               exclude: /\.module\.css$/,
               use: getStyleLoaders({
                 importLoaders: 1,
-                sourceMap: isEnvDevelopment ? true : false,
+                sourceMap: isEnvProduction
+                  ? shouldUseSourceMap
+                  : isEnvDevelopment,
               }),
               sideEffects: true,
             },
@@ -96,7 +110,9 @@ module.exports = function (webpackEnv) {
               test: /\.module\.css$/,
               use: getStyleLoaders({
                 importLoaders: 1,
-                sourceMap: isEnvDevelopment ? true : false,
+                sourceMap: isEnvProduction
+                  ? shouldUseSourceMap
+                  : isEnvDevelopment,
                 modules: {
                   localIdentName: isEnvDevelopment ? '[name]__[local]--[hash:base64:5]' : '[hash:base64:5]',
                 }
@@ -107,23 +123,27 @@ module.exports = function (webpackEnv) {
               exclude: /\.module\.(scss|sass)$/,
               use:
                 getStyleLoaders({
-                  importLoaders: 1,
-                  sourceMap: isEnvDevelopment ? true : false,
+                  importLoaders: 3,
+                  sourceMap: isEnvProduction
+                    ? shouldUseSourceMap
+                    : isEnvDevelopment,
                 }, true),
               sideEffects: true,
             },
             {
               test: /\.module\.(scss|sass)$/,
               use: getStyleLoaders({
-                importLoaders: 1,
-                sourceMap: isEnvDevelopment ? true : false,
+                importLoaders: 3,
+                sourceMap: isEnvProduction
+                  ? shouldUseSourceMap
+                  : isEnvDevelopment,
                 modules: {
                   localIdentName: isEnvDevelopment ? '[name]__[local]--[hash:base64:5]' : '[hash:base64:5]',
                 }
               }, true)
             },
             {
-              loader: 'file-loader',
+              loader: require.resolve('file-loader'),
               exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
               options: {
                 name: 'static/media/[name].[hash:8].[ext]',

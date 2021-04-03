@@ -6,10 +6,11 @@ const packageJson = require('../package.json');
 const devConfig = {
   mode: 'development',
   entry: './src/index.ts',
-  devtool: 'eval-cheap-module-source-map',
   output: {
-    filename: '[name].[contenthash].js',
+    filename: '[name].js',
     publicPath: 'http://localhost:8000/',
+    chunkFilename: '[name].chunk.js',
+    globalObject: 'this'
   },
   devServer: {
     port: 8000,
