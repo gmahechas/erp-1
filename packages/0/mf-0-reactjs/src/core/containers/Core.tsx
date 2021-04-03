@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 
 import HeaderCore from '@mf-0/core/components/HeaderCore';
+import NotFoundCore from '@mf-0/core/components/NotFoundCore';
 
 const Mf1 = lazy(() => import('@mf-0/microfrontends/Mf1'));
 const Mf2 = lazy(() => import('@mf-0/microfrontends/Mf2'));
@@ -25,7 +26,8 @@ const Core = () => {
                     <Route path='/estate' component={Mf3} />
                     <Route path='/city' component={Mf3} />
                     <Route path='/address' component={Mf3} />
-                    <Route path='/' component={Mf2} />
+                    <Route exact path='/' component={Mf2} />
+                    <Route path='*' component={NotFoundCore} />
                 </Switch>
             </Suspense>
         </BrowserRouter>
