@@ -16,7 +16,7 @@ export function BaseMongodbService<A extends Document, B, C, D, E>(): any {
       return { entity: await model.save() };
     }
 
-    async updateOne(
+/*     async updateOne(
       data: IEntityOne<C>,
     ): Promise<IEntityOne<A>> {
       const { ...dataEntity } = data.entity as any;
@@ -35,7 +35,7 @@ export function BaseMongodbService<A extends Document, B, C, D, E>(): any {
       } else {
         return { entity: null };
       }
-    }
+    } */
 
     async deleteOne(
       data: IEntityOne<D>,
