@@ -1,6 +1,7 @@
 import * as connectRedis from 'connect-redis';
 import * as session from 'express-session';
 import * as redis from 'redis';
+import { logger } from '@gmahechas/common-erp';
 
 const RedisStore = connectRedis(session);
 const client = redis.createClient({
@@ -8,8 +9,8 @@ const client = redis.createClient({
   prefix: 'erp_',
 });
 
-client.on('error', () => console.log('Error connecting to redis'));
-client.on('connect', () => console.log('Connected to redis successfully'));
+client.on('error', () => logger.error('Error connecting to redis'));
+client.on('connect', () => logger.debug('Connected to redis successfully'));
 
 export default session({
   store: new RedisStore({ client }),

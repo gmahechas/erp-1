@@ -2,9 +2,11 @@ import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { join } from 'path';
 
+import { logger } from '@gmahechas/common-erp';
+import { ExceptionFilter } from '@gmahechas/common-erp-nestjs';
+
 import { AppModule } from '@ms-1/app.module';
 import config from '@ms-1/utils/config';
-import { ExceptionFilter } from '@gmahechas/common-erp-nestjs';
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
@@ -23,6 +25,6 @@ async function bootstrap() {
   );
   app.useGlobalFilters(new ExceptionFilter());
   await app.listenAsync();
-  console.log(`MS-1 is listening on port ${config.port}`);
+  logger.debug(`MS-1 is listening on port ${config.port}`);
 }
 bootstrap();
