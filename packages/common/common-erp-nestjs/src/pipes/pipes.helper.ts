@@ -1,7 +1,7 @@
 import { IErrorResponse } from '@gmahechas/common-erp';
-import { ObjectSchema, ValidationError, ValidationResult } from 'joi';
+import { ObjectSchema, ArraySchema, ValidationError, ValidationResult } from 'joi';
 
-export function validate(schema: ObjectSchema, values: any): ValidationResult {
+export function validate(schema: ObjectSchema | ArraySchema, values: any): ValidationResult {
   return schema.validate(values, {
     abortEarly: false,
   });

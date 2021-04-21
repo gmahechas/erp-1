@@ -1,14 +1,14 @@
-import Joi, { object } from 'joi';
+import Joi, { object, array } from 'joi';
 import { JoiSchema } from '../../../utils/joi-schema.interface';
 
-const createAddressSchema = object({
+const createOneAddressSchema = object({
   addressLine1: Joi.string().required(),
   addressLine2: Joi.string(),
   addressZipCode: Joi.string(),
   cityId: Joi.string().required()
 });
 
-const updateAddressSchema = object({
+const updateOneAddressSchema = object({
   id: Joi.string().required(),
   addressLine1: Joi.string(),
   addressLine2: Joi.string(),
@@ -16,12 +16,24 @@ const updateAddressSchema = object({
   cityId: Joi.string()
 });
 
-const deleteAddressSchema = object({
+const deleteOneAddressSchema = object({
   id: Joi.string().required()
 });
 
+const searchOneAddressSchema = object({
+  id: Joi.string(),
+  addressLine1: Joi.string(),
+  addressLine2: Joi.string(),
+  addressZipCode: Joi.string(),
+  cityId: Joi.string()
+}).min(1);
+
+const searchManyAddressSchema = array().items(searchOneAddressSchema);
+
 export const addressJoiSchema: JoiSchema = ({
-  create: createAddressSchema,
-  update: updateAddressSchema,
-  delete: deleteAddressSchema
+  createOne: createOneAddressSchema,
+  updateOne: updateOneAddressSchema,
+  deleteOne: deleteOneAddressSchema,
+  searchOne: searchOneAddressSchema,
+  searchMany: searchManyAddressSchema
 });

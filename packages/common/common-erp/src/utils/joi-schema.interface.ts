@@ -1,7 +1,9 @@
-import { ObjectSchema } from 'joi';
+import { ObjectSchema, ArraySchema } from 'joi';
 
 export interface JoiSchema {
-  create: ObjectSchema,
-  update: ObjectSchema,
-  delete: ObjectSchema
+  createOne: ObjectSchema,
+  updateOne: ObjectSchema,
+  deleteOne: ObjectSchema,
+  searchOne: ObjectSchema,
+  searchMany: ArraySchema,
 }

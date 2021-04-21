@@ -1,13 +1,13 @@
 import { Injectable, PipeTransform, Scope } from '@nestjs/common';
 
-import { ObjectSchema, ValidationResult, ValidationError } from 'joi';
+import { ObjectSchema, ArraySchema } from 'joi';
 import { RequestValidationError } from '@gmahechas/common-erp';
 
 import { validate, serializeErrors } from './pipes.helper';
 
 @Injectable()
 export class GraphqlValidationPipe implements PipeTransform {
-  constructor(private schema: ObjectSchema) { }
+  constructor(private schema: ObjectSchema | ArraySchema) { }
 
   transform(values: any) {
     const apiValidation = validate(this.schema, values);

@@ -1,13 +1,13 @@
 import { Injectable, PipeTransform } from '@nestjs/common';
 import { RpcException } from '@nestjs/microservices';
 
-import { ObjectSchema } from 'joi';
+import { ObjectSchema, ArraySchema } from 'joi';
 
 import { validate, serializeErrors } from './pipes.helper';
 
 @Injectable()
 export class GrpcValidationPipe implements PipeTransform {
-  constructor(private schema: ObjectSchema) { }
+  constructor(private schema: ObjectSchema | ArraySchema) { }
 
   transform(values: any) {
     // This's for auth (signin), because the request doesn't brings { entity: ... }

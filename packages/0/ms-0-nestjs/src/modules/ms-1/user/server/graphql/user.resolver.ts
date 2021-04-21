@@ -26,7 +26,7 @@ export class UserResolver {
     @Args(
       'entity',
       { type: () => CreateUserInput },
-      new GraphqlValidationPipe(userJoiSchema.create),
+      new GraphqlValidationPipe(userJoiSchema.createOne),
     )
     entity: CreateUserInput,
   ): Promise<Partial<UserType>> {
@@ -38,7 +38,7 @@ export class UserResolver {
     @Args(
       'entity',
       { type: () => UpdateUserInput },
-      new GraphqlValidationPipe(userJoiSchema.update),
+      new GraphqlValidationPipe(userJoiSchema.updateOne),
     )
     entity: UpdateUserInput,
   ): Promise<Partial<UserType>> {
@@ -50,7 +50,7 @@ export class UserResolver {
     @Args(
       'entity',
       { type: () => DeleteUserInput },
-      new GraphqlValidationPipe(userJoiSchema.delete),
+      new GraphqlValidationPipe(userJoiSchema.deleteOne),
     )
     entity: DeleteUserInput,
   ): Promise<Partial<UserType>> {
@@ -59,14 +59,23 @@ export class UserResolver {
 
   @Query(() => UserType, { name: `searchOneUser`, nullable: true })
   async searchOne(
-    @Args('entity', { type: () => SearchUserInput }) entity: SearchUserInput,
+    @Args(
+      'entity',
+      { type: () => SearchUserInput },
+      new GraphqlValidationPipe(userJoiSchema.searchOne),
+    )
+    entity: SearchUserInput,
   ): Promise<Partial<UserType>> {
     return (await this.userGrpcService.searchOne({ entity })).entity;
   }
 
   @Query(() => [UserType], { name: `searchManyUser`, nullable: true })
   async searchMany(
-    @Args('entities', { type: () => [SearchUserInput] })
+    @Args(
+      'entities',
+      { type: () => [SearchUserInput] },
+      new GraphqlValidationPipe(userJoiSchema.searchMany),
+    )
     entities: [SearchUserInput],
   ): Promise<Partial<UserType>[]> {
     return (await this.userGrpcService.searchMany({ entities })).entities;

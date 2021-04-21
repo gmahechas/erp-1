@@ -1,23 +1,33 @@
-import Joi, { object } from 'joi';
+import Joi, { object, array } from 'joi';
 import { JoiSchema } from '../../../utils/joi-schema.interface';
 
-const createOfficeSchema = object({
+const createOneOfficeSchema = object({
   officeName: Joi.string().min(3).max(30).required(),
   companyId: Joi.string().required()
 });
 
-const updateOfficeSchema = object({
+const updateOneOfficeSchema = object({
   id: Joi.string().required(),
   officeName: Joi.string().min(3).max(30),
   companyId: Joi.string()
 });
 
-const deleteOfficeSchema = object({
+const deleteOneOfficeSchema = object({
   id: Joi.string().required()
 });
 
+const searchOneOfficeSchema = object({
+  id: Joi.string(),
+  officeName: Joi.string().min(3).max(30),
+  companyId: Joi.string()
+}).min(1);
+
+const searchManyOfficeSchema = array().items(searchOneOfficeSchema);
+
 export const officeJoiSchema: JoiSchema = ({
-  create: createOfficeSchema,
-  update: updateOfficeSchema,
-  delete: deleteOfficeSchema
+  createOne: createOneOfficeSchema,
+  updateOne: updateOneOfficeSchema,
+  deleteOne: deleteOneOfficeSchema,
+  searchOne: searchOneOfficeSchema,
+  searchMany: searchManyOfficeSchema
 });

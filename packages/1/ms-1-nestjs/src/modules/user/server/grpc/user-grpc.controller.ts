@@ -22,7 +22,7 @@ export class UserGrpcController {
 
   @GrpcMethod(GRPC_USER_SERVICE_NAME)
   async createOne(
-    @Payload(new GrpcValidationPipe(userJoiSchema.create))
+    @Payload(new GrpcValidationPipe(userJoiSchema.createOne))
     data: IEntityOne<ICreateUserInput>,
   ): Promise<IEntityOne<IUser>> {
     return await this.userMongodbService.createOne(data);
@@ -30,7 +30,7 @@ export class UserGrpcController {
 
   @GrpcMethod(GRPC_USER_SERVICE_NAME)
   async updateOne(
-    @Payload(new GrpcValidationPipe(userJoiSchema.update))
+    @Payload(new GrpcValidationPipe(userJoiSchema.updateOne))
     data: IEntityOne<IUpdateUserInput>,
   ): Promise<IEntityOne<IUser>> {
     return await this.userMongodbService.updateOne(data);
@@ -38,7 +38,7 @@ export class UserGrpcController {
 
   @GrpcMethod(GRPC_USER_SERVICE_NAME)
   async deleteOne(
-    @Payload(new GrpcValidationPipe(userJoiSchema.delete))
+    @Payload(new GrpcValidationPipe(userJoiSchema.deleteOne))
     data: IEntityOne<IDeleteUserInput>,
   ): Promise<IEntityOne<IUser>> {
     return await this.userMongodbService.deleteOne(data);
@@ -46,14 +46,16 @@ export class UserGrpcController {
 
   @GrpcMethod(GRPC_USER_SERVICE_NAME)
   async searchOne(
-    @Payload() data: IEntityOne<ISearchUserInput>,
+    @Payload(new GrpcValidationPipe(userJoiSchema.searchOne))
+    data: IEntityOne<ISearchUserInput>,
   ): Promise<IEntityOne<IUser>> {
     return await this.userMongodbService.searchOne(data);
   }
 
   @GrpcMethod(GRPC_USER_SERVICE_NAME)
   async searchMany(
-    @Payload() data: IEntityMany<ISearchUserInput>,
+    @Payload(new GrpcValidationPipe(userJoiSchema.searchMany))
+    data: IEntityMany<ISearchUserInput>,
   ): Promise<IEntityMany<IUser>> {
     return await this.userMongodbService.searchMany(data);
   }

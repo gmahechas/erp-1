@@ -23,11 +23,7 @@ export function BaseResolver<A, B, C, D, E>(
 
     @Mutation(() => typeRef, { name: `createOne${entityName}`, nullable: true })
     async createOne(
-      @Args(
-        'entity',
-        { type: () => createRef },
-        new GraphqlValidationPipe(schemaValidation.create),
-      )
+      @Args('entity', { type: () => createRef }, new GraphqlValidationPipe(schemaValidation.createOne))
       entity: B,
     ): Promise<Partial<A | null>> {
       return (await this.entityService.createOne({ entity })).entity;
@@ -35,11 +31,7 @@ export function BaseResolver<A, B, C, D, E>(
 
     @Mutation(() => typeRef, { name: `updateOne${entityName}`, nullable: true })
     async updateOne(
-      @Args(
-        'entity',
-        { type: () => updateRef },
-        new GraphqlValidationPipe(schemaValidation.update),
-      )
+      @Args('entity', { type: () => updateRef }, new GraphqlValidationPipe(schemaValidation.updateOne))
       entity: C,
     ): Promise<Partial<A | null>> {
       return (await this.entityService.updateOne({ entity })).entity;
@@ -47,11 +39,7 @@ export function BaseResolver<A, B, C, D, E>(
 
     @Mutation(() => typeRef, { name: `deleteOne${entityName}`, nullable: true })
     async deleteOne(
-      @Args(
-        'entity',
-        { type: () => deleteRef },
-        new GraphqlValidationPipe(schemaValidation.delete),
-      )
+      @Args('entity', { type: () => deleteRef }, new GraphqlValidationPipe(schemaValidation.deleteOne))
       entity: D,
     ): Promise<Partial<A | null>> {
       return (await this.entityService.deleteOne({ entity })).entity;
@@ -59,14 +47,14 @@ export function BaseResolver<A, B, C, D, E>(
 
     @Query(() => typeRef, { name: `searchOne${entityName}`, nullable: true })
     async searchOne(
-      @Args('entity', { type: () => searchRef }) entity: E,
+      @Args('entity', { type: () => searchRef }, new GraphqlValidationPipe(schemaValidation.searchOne)) entity: E,
     ): Promise<Partial<A | null>> {
       return (await this.entityService.searchOne({ entity })).entity;
     }
 
     @Query(() => [typeRef], { name: `searchMany${entityName}`, nullable: true })
     async searchMany(
-      @Args('entities', { type: () => [searchRef] })
+      @Args('entities', { type: () => [searchRef] }, new GraphqlValidationPipe(schemaValidation.searchMany))
       entities: [E],
     ): Promise<Partial<A>[] | null> {
       return (await this.entityService.searchMany({ entities })).entities;

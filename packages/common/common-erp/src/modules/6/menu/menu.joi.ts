@@ -1,7 +1,7 @@
-import Joi, { object } from 'joi';
+import Joi, { object, array } from 'joi';
 import { JoiSchema } from '../../../utils/joi-schema.interface';
 
-const createMenuSchema = object({
+const createOneMenuSchema = object({
   menuName: Joi.string().min(3).max(30).required(),
   menuDescription: Joi.string().min(3).max(30).required(),
   menuUri: Joi.string().min(3).max(30).required(),
@@ -9,7 +9,7 @@ const createMenuSchema = object({
   menuIdParent: Joi.string().min(3).max(30).required()
 });
 
-const updateMenuSchema = object({
+const updateOneMenuSchema = object({
   id: Joi.string().required(),
   menuName: Joi.string().min(3).max(30),
   menuDescription: Joi.string().min(3).max(30),
@@ -18,12 +18,25 @@ const updateMenuSchema = object({
   menuIdParent: Joi.string().min(3).max(30)
 });
 
-const deleteMenuSchema = object({
+const deleteOneMenuSchema = object({
   id: Joi.string().required()
 });
 
+const searchOneMenuSchema = object({
+  id: Joi.string(),
+  menuName: Joi.string().min(3).max(30),
+  menuDescription: Joi.string().min(3).max(30),
+  menuUri: Joi.string().min(3).max(30),
+  menuOrder: Joi.number().integer().positive(),
+  menuIdParent: Joi.string().min(3).max(30)
+}).min(1);
+
+const searchManyMenuSchema = array().items(searchOneMenuSchema);
+
 export const menuJoiSchema: JoiSchema = ({
-  create: createMenuSchema,
-  update: updateMenuSchema,
-  delete: deleteMenuSchema
+  createOne: createOneMenuSchema,
+  updateOne: updateOneMenuSchema,
+  deleteOne: deleteOneMenuSchema,
+  searchOne: searchOneMenuSchema,
+  searchMany: searchManyMenuSchema
 });

@@ -1,23 +1,33 @@
-import Joi, { object } from 'joi';
+import Joi, { object, array } from 'joi';
 import { JoiSchema } from '../../../utils/joi-schema.interface';
 
-const createTypePersonSchema = object({
+const createOneTypePersonSchema = object({
   typePersonDescription: Joi.string().min(2).max(64).required(),
   typePersonCode: Joi.string().min(2).max(8).required()
 });
 
-const updateTypePersonSchema = object({
+const updateOneTypePersonSchema = object({
   id: Joi.string().required(),
   typePersonDescription: Joi.string().min(2).max(64),
   typePersonCode: Joi.string().min(2).max(8)
 });
 
-const deleteTypePersonSchema = object({
+const deleteOneTypePersonSchema = object({
   id: Joi.string().required()
 });
 
+const searchOneTypePersonSchema = object({
+  id: Joi.string(),
+  typePersonDescription: Joi.string().min(2).max(64),
+  typePersonCode: Joi.string().min(2).max(8)
+}).min(1);
+
+const searchManyTypePersonSchema = array().items(searchOneTypePersonSchema);
+
 export const typePersonJoiSchema: JoiSchema = ({
-  create: createTypePersonSchema,
-  update: updateTypePersonSchema,
-  delete: deleteTypePersonSchema
+  createOne: createOneTypePersonSchema,
+  updateOne: updateOneTypePersonSchema,
+  deleteOne: deleteOneTypePersonSchema,
+  searchOne: searchOneTypePersonSchema,
+  searchMany: searchManyTypePersonSchema
 });

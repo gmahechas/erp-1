@@ -14,7 +14,7 @@ export function BaseGrpcController<A, B, C, D, E>(
 
     @GrpcMethod(serviceName)
     async createOne(
-      @Payload(new GrpcValidationPipe(schemaValidation.create))
+      @Payload(new GrpcValidationPipe(schemaValidation.createOne))
       data: IEntityOne<B>,
     ): Promise<IEntityOne<A>> {
       return await this.entityService.createOne(data);
@@ -22,7 +22,7 @@ export function BaseGrpcController<A, B, C, D, E>(
 
     @GrpcMethod(serviceName)
     async updateOne(
-      @Payload(new GrpcValidationPipe(schemaValidation.update))
+      @Payload(new GrpcValidationPipe(schemaValidation.updateOne))
       data: IEntityOne<C>,
     ): Promise<IEntityOne<A>> {
       return await this.entityService.updateOne(data);
@@ -30,7 +30,7 @@ export function BaseGrpcController<A, B, C, D, E>(
 
     @GrpcMethod(serviceName)
     async deleteOne(
-      @Payload(new GrpcValidationPipe(schemaValidation.delete))
+      @Payload(new GrpcValidationPipe(schemaValidation.deleteOne))
       data: IEntityOne<D>,
     ): Promise<IEntityOne<A>> {
       return await this.entityService.deleteOne(data);
@@ -38,14 +38,16 @@ export function BaseGrpcController<A, B, C, D, E>(
 
     @GrpcMethod(serviceName)
     async searchOne(
-      @Payload() data: IEntityOne<E>,
+      @Payload(new GrpcValidationPipe(schemaValidation.searchOne))
+      data: IEntityOne<E>,
     ): Promise<IEntityOne<A>> {
       return await this.entityService.searchOne(data);
     }
 
     @GrpcMethod(serviceName)
     async searchMany(
-      @Payload() data: IEntityMany<E>,
+      @Payload(new GrpcValidationPipe(schemaValidation.searchMany))
+      data: IEntityMany<E>,
     ): Promise<IEntityMany<A>> {
       return await this.entityService.searchMany(data);
     }

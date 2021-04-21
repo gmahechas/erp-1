@@ -1,14 +1,14 @@
-import Joi, { object } from 'joi';
+import Joi, { object, array } from 'joi';
 import { JoiSchema } from '../../../utils/joi-schema.interface';
 
-const createCompanySchema = object({
+const createOneCompanySchema = object({
   companyName: Joi.string().min(3).max(30).required(),
   companyIdentification: Joi.string().min(2).max(30).required(),
   companyKey: Joi.string().min(3).max(8).required(),
   cityId: Joi.string().required()
 });
 
-const updateCompanySchema = object({
+const updateOneCompanySchema = object({
   id: Joi.string().required(),
   companyName: Joi.string().min(3).max(30),
   companyIdentification: Joi.string().min(2).max(30),
@@ -16,12 +16,24 @@ const updateCompanySchema = object({
   cityId: Joi.string()
 });
 
-const deleteCompanySchema = object({
+const deleteOneCompanySchema = object({
   id: Joi.string().required()
 });
 
+const searchOneCompanySchema = object({
+  id: Joi.string(),
+  companyName: Joi.string().min(3).max(30),
+  companyIdentification: Joi.string().min(2).max(30),
+  companyKey: Joi.string().min(3).max(8),
+  cityId: Joi.string()
+}).min(1);
+
+const searchManyCompanySchema = array().items(searchOneCompanySchema);
+
 export const companyJoiSchema: JoiSchema = ({
-  create: createCompanySchema,
-  update: updateCompanySchema,
-  delete: deleteCompanySchema
+  createOne: createOneCompanySchema,
+  updateOne: updateOneCompanySchema,
+  deleteOne: deleteOneCompanySchema,
+  searchOne: searchOneCompanySchema,
+  searchMany: searchManyCompanySchema
 });
