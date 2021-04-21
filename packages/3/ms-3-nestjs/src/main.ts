@@ -12,6 +12,7 @@ async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     AppModule,
     {
+      logger: ['error', 'warn', 'debug', 'verbose'],
       transport: Transport.GRPC,
       options: {
         url: '0.0.0.0:'.concat(config.port),

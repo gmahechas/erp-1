@@ -9,7 +9,9 @@ import { AppModule } from '@ms-0/app.module';
 import config from '@ms-0/utils/config';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    logger: ['error', 'warn', 'debug', 'verbose'],
+  });
   app.set('trust proxy', 1);
   app.use(redis);
   app.useGlobalFilters(new HttpExceptionFilter());
