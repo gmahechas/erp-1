@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>0.0.8 (2021-04-24)</small>
+
+* feat: serachOne, searchMany validations added ([32d7ea2](https://github.com/gmahechas/erp/commit/32d7ea2))
+* feat: setup logger ([7e2a589](https://github.com/gmahechas/erp/commit/7e2a589))
+* chore: fix mongoose ([911b3c5](https://github.com/gmahechas/erp/commit/911b3c5))
+
+
+
+
+
 ## <small>0.0.7 (2021-04-20)</small>
 
 * chore: upgrade ([6622c7c](https://github.com/gmahechas/erp/commit/6622c7c))

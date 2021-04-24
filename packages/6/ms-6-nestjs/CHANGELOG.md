@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>0.0.9 (2021-04-24)</small>
+
+* refactor: remove nestjs log ([1460a06](https://github.com/gmahechas/erp/commit/1460a06))
+* refactor: use logger instead console.log ([4aa1f48](https://github.com/gmahechas/erp/commit/4aa1f48))
+* chore: fix mongoose ([911b3c5](https://github.com/gmahechas/erp/commit/911b3c5))
+
+
+
+
+
 ## <small>0.0.8 (2021-04-20)</small>
 
 * chore: upgrade ([6622c7c](https://github.com/gmahechas/erp/commit/6622c7c))
