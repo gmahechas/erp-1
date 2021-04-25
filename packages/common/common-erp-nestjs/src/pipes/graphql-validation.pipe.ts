@@ -10,10 +10,10 @@ export class GraphqlValidationPipe implements PipeTransform {
   constructor(private schema: ObjectSchema | ArraySchema) { }
 
   transform(values: any) {
-    const apiValidation = validate(this.schema, values);
-    if (apiValidation.error) {
-      const apiErrors = serializeErrors(apiValidation.error);
-      throw new RequestValidationError(apiErrors);
+    const validation = validate(this.schema, values);
+    if (validation.error) {
+      const errors = serializeErrors(validation.error);
+      throw new RequestValidationError(errors);
     } else {
       return values;
     }
