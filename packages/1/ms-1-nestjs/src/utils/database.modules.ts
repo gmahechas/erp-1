@@ -5,7 +5,7 @@ import config from '@ms-1/utils/config';
 
 export const databasesModules: DynamicModule[] = [
   MongooseModule.forRootAsync({
-    useFactory: async () => ({
+    useFactory: () => ({
       uri: config.mongodb_uri,
       user: config.mongodb_user,
       pass: config.mongodb_pass,
