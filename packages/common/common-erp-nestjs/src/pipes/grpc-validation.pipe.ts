@@ -1,9 +1,7 @@
 import { Injectable, PipeTransform } from '@nestjs/common';
 import { RpcException } from '@nestjs/microservices';
-
 import { ObjectSchema, ArraySchema } from 'joi';
-
-import { validate, serializeErrors } from './pipes.helper';
+import { validate, serializeErrors } from '@gmahechas/common-erp';
 
 @Injectable()
 export class GrpcValidationPipe implements PipeTransform {

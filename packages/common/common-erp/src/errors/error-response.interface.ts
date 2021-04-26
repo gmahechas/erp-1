@@ -1,4 +1,4 @@
-interface IJoiError {
+export interface IJoiError {
   type: string;
   context: any;
 }

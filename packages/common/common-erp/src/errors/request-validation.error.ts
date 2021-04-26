@@ -1,12 +1,16 @@
 import { CustomError } from './custom.error';
-import { IErrorResponse } from '../utils/error-response.interface';
+import { MessageError } from './messages.error';
+import { IJoiError } from '../errors/error-response.interface';
 
 export class RequestValidationError extends CustomError {
-  constructor(public errors: IErrorResponse) {
+  constructor(public errors: IJoiError[]) {
     super();
     Object.setPrototypeOf(this, RequestValidationError.prototype);
   }
   serializeErrors() {
-    return this.errors;
+    return {
+      message: MessageError.REQUEST_VALIDATION,
+      errors: this.errors
+    };
   };
 }

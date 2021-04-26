@@ -1,4 +1,5 @@
 import { CustomError } from './custom.error';
+import { MessageError } from './messages.error';
 
 export class DatabaseConnectionError extends CustomError {
   constructor() {
@@ -7,6 +8,6 @@ export class DatabaseConnectionError extends CustomError {
   }
 
   serializeErrors() {
-    return { message: 'error.database' };
+    return { message: MessageError.DATABASE_CONNECTION };
   };
 }

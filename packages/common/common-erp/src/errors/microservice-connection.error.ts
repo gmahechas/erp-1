@@ -1,4 +1,5 @@
 import { CustomError } from './custom.error';
+import { MessageError } from './messages.error';
 
 export class MicroserviceConnectionError extends CustomError {
   constructor() {
@@ -7,6 +8,6 @@ export class MicroserviceConnectionError extends CustomError {
   }
 
   serializeErrors() {
-    return { message: 'error.microservice' };
+    return { message: MessageError.MICROSERVICE_CONNECTION };
   };
 }

@@ -1,4 +1,5 @@
 import { CustomError } from './custom.error';
+import { MessageError } from './messages.error';
 
 export class UnAuthenticatedError extends CustomError {
   constructor() {
@@ -7,6 +8,6 @@ export class UnAuthenticatedError extends CustomError {
   }
 
   serializeErrors() {
-    return { message: 'error.unauthenticated' };
+    return { message: MessageError.UNAUTHENTICATED };
   };
 }

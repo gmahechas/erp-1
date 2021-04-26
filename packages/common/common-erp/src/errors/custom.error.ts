@@ -1,4 +1,4 @@
-import { IErrorResponse } from '../utils/error-response.interface';
+import { IErrorResponse } from '../errors/error-response.interface';
 
 export abstract class CustomError extends Error {
   constructor() {
