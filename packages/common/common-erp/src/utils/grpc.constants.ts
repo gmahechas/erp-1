@@ -4,7 +4,7 @@ export const GRPC_AUTH_SERVICE_NAME = 'AuthService';
 export const GRPC_USER_SERVICE_NAME = 'UserService';
 
 /* ************ MS2 ************ */
-export const GRPC_MS_2_PACKAGE_NAME = 'Ms2Package';
+/* No yet */
 
 /* ************ MS3 ************ */
 export const GRPC_MS_3_PACKAGE_NAME = 'Ms3Package';

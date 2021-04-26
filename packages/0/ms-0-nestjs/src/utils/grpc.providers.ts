@@ -2,7 +2,6 @@ import { Provider } from '@nestjs/common';
 
 import {
   GRPC_MS_1_PACKAGE_NAME,
-  GRPC_MS_2_PACKAGE_NAME,
   GRPC_MS_3_PACKAGE_NAME,
   GRPC_MS_4_PACKAGE_NAME,
   GRPC_MS_5_PACKAGE_NAME,
