@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>0.0.10 (2021-04-26)</small>
+
+* refactor: nestjs logger enabled ([cb11092](https://github.com/gmahechas/erp/commit/cb11092))
+* refactor: remove unnecessary async/await ([b35009b](https://github.com/gmahechas/erp/commit/b35009b))
+
+
+
+
+
 ## <small>0.0.9 (2021-04-24)</small>
 
 * refactor: remove nestjs log ([1460a06](https://github.com/gmahechas/erp/commit/1460a06))
