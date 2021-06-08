@@ -7,5 +7,5 @@ export * from './grpc.constants';
 export { JoiSchema } from './joi-schema.interface';
 export { validate, serializeErrors } from './joi.validation';
 export * from './jwt'
-export { logger } from './logger'
+export { winstonLogger } from './winston.logger'
 export { toHash, compareHash } from './password';

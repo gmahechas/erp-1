@@ -2,7 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { join } from 'path';
 
-import { logger } from '@gmahechas/common-erp';
 import { ExceptionFilter } from '@gmahechas/common-erp-nestjs';
 
 import { AppModule } from '@ms-6/app.module';
@@ -25,6 +24,6 @@ async function bootstrap() {
   );
   app.useGlobalFilters(new ExceptionFilter());
   await app.listenAsync();
-  logger.debug(`MS-6 is listening on port ${config.port}`);
+  console.info(`MS-6 is listening on port ${config.port}`);
 }
 bootstrap();
