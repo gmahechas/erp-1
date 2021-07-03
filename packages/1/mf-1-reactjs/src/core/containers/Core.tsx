@@ -2,6 +2,7 @@ import React, { FC, lazy, Suspense } from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import { History, MemoryHistory } from 'history';
 
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { Grid } from '@material-ui/core';
 
 const Auth = lazy(() => import('@mf-1/modules/auth/containers/Auth'));
@@ -13,18 +14,21 @@ interface IProps {
 
 const Core: FC<IProps> = ({ history }) => {
   return (
-    <Router history={history}>
-      <Grid container>
-        <Grid item md={12}>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Switch>
-              <Route path='/user' component={User} />
-              <Route path='/auth' component={Auth} />
-            </Switch>
-          </Suspense>
+    <>
+      <CssBaseline />
+      <Router history={history}>
+        <Grid container>
+          <Grid item md={12}>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Switch>
+                <Route path='/user' component={User} />
+                <Route path='/auth' component={Auth} />
+              </Switch>
+            </Suspense>
+          </Grid>
         </Grid>
-      </Grid>
-    </Router>
+      </Router>
+    </>
   );
 };
 

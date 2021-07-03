@@ -2,6 +2,7 @@ import React, { FC, lazy, Suspense } from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import { History, MemoryHistory } from 'history';
 
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { Grid } from '@material-ui/core';
 
 const Dashboard = lazy(() => import('@mf-2/modules/dashboard/Dashboard'));
@@ -12,17 +13,20 @@ interface IProps {
 
 const Core: FC<IProps> = ({ history }) => {
   return (
-    <Router history={history}>
-      <Grid container>
-        <Grid item md={12}>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Switch>
-              <Route path='/' component={Dashboard} />
-            </Switch>
-          </Suspense>
+    <>
+      <CssBaseline />
+      <Router history={history}>
+        <Grid container>
+          <Grid item md={12}>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Switch>
+                <Route path='/' component={Dashboard} />
+              </Switch>
+            </Suspense>
+          </Grid>
         </Grid>
-      </Grid>
-    </Router>
+      </Router>
+    </>
   );
 };
 

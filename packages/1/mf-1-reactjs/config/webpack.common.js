@@ -1,5 +1,4 @@
 const path = require('path');
-const postcssNormalize = require('postcss-normalize');
 
 const paths = require('./paths');
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -29,7 +28,6 @@ module.exports = function (webpackEnv) {
                   stage: 3,
                 },
               ],
-              postcssNormalize()
             ],
             sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
           }
