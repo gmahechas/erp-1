@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Stencil Component Starter</title>
+
+    <script type="module" src="/build/common-webcomponents.esm.js"></script>
+    <script nomodule src="/build/common-webcomponents.js"></script>
+    <link rel="stylesheet" href="/build/common-webcomponents.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  </head>
+  <body style="height: 100vh">
+    <wc-dropdown label="Select one"></wc-dropdown>
+    <!--     <wc-table>
+      <wc-paginator slot="paginator"></wc-paginator>
+    </wc-table>
+ -->
+    <script>
+      const dropdownData = [
+        { value: 'grains', label: 'Bread, Cereal, Rice, and Pasta' },
+        { value: 'vegetables', label: 'Vegetables'},
+        { value: 'fruit', label: 'Fruit' },
+      ];
+
+      const dropdown = document.querySelector('wc-dropdown');
+      dropdown.data = dropdownData;
+      /* setInterval(() => dropdown.disabled = !dropdown.disabled, 3000) */
+    </script>
+  </body>
+</html>

@@ -1,19 +1,20 @@
 {
-  "name": "erp",
-  "description": "erp",
-  "author": "gmahechas",
-  "private": true,
-  "license": "UNLICENSED",
-  "scripts": {
-    "lerna": "lerna",
-    "commit": "git-cz",
-    "start:mf": "lerna run start --stream",
-    "start:ms:dev": "lerna run start:dev --stream",
-    "build": "lerna run build --stream"
-  },
-  "devDependencies": {
-    "conventional-changelog": "^3.1.24",
-    "git-cz": "^4.7.4",
-    "lerna": "^3.22.1"
-  }
+    "name": "erp",
+    "description": "erp",
+    "author": "gmahechas",
+    "private": true,
+    "license": "UNLICENSED",
+    "scripts": {
+        "lerna": "lerna",
+        "commit": "git-cz",
+        "start:mf": "lerna run start --stream",
+        "start:ms:dev": "lerna run start:dev --stream",
+        "build": "lerna run build --stream",
+        "build:wc": "yarn build --scope @gmahechas/common-webcomponents && yarn build --scope @gmahechas/common-webcomponents-react"
+    },
+    "devDependencies": {
+        "conventional-changelog": "^3.1.24",
+        "git-cz": "^4.7.6",
+        "lerna": "^4.0.0"
+    }
 }

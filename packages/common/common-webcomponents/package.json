@@ -1,0 +1,38 @@
+{
+  "name": "@gmahechas/common-webcomponents",
+  "version": "0.0.6",
+  "description": "common-webcomponents",
+  "author": "gmahechas",
+  "private": false,
+  "license": "UNLICENSED",
+  "main": "dist/index.cjs.js",
+  "module": "dist/custom-elements/index.js",
+  "es2015": "dist/esm/index.mjs",
+  "es2017": "dist/esm/index.mjs",
+  "types": "dist/custom-elements/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/common-webcomponents/common-webcomponents.esm.js",
+  "files": [
+    "dist/",
+    "loader/"
+  ],
+  "scripts": {
+    "build": "stencil build --docs",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll",
+    "generate": "stencil generate"
+  },
+  "dependencies": {
+    "@stencil/core": "^2.0.1",
+    "material-components-web": "^11.0.0"
+  },
+  "devDependencies": {
+    "@stencil/react-output-target": "^0.0.9",
+    "@stencil/sass": "^1.4.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
