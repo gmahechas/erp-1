@@ -1,5 +1,5 @@
 {
-  "version": "0.0.10",
+  "version": "0.0.11",
   "npmClient": "yarn",
   "command": {
     "version": {
@@ -11,5 +11,7 @@
       "message": "chore(release): publish"
     }
   },
-  "packages": ["packages/*/*"]
+  "packages": [
+    "packages/*/*"
+  ]
 }

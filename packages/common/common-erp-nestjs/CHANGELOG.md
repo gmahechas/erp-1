@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>0.0.11 (2021-07-25)</small>
+
+* refactor: error messages ([857aabf](https://github.com/gmahechas/erp/commit/857aabf))
+* refactor: function programming passwrod and delete cookie ([8367b8c](https://github.com/gmahechas/erp/commit/8367b8c))
+* refactor: move gql-auth.guard to common nestjs ([6b1bc7d](https://github.com/gmahechas/erp/commit/6b1bc7d))
+* refactor: remove material, create some wc ([1a31ac8](https://github.com/gmahechas/erp/commit/1a31ac8))
+* refactor: rename modules ([93979c0](https://github.com/gmahechas/erp/commit/93979c0))
+* chore: fix mongoose ([911b3c5](https://github.com/gmahechas/erp/commit/911b3c5))
+* chore: upgrade ([6622c7c](https://github.com/gmahechas/erp/commit/6622c7c))
+* chore(release): publish ([3317936](https://github.com/gmahechas/erp/commit/3317936))
+* chore(release): publish ([16749e6](https://github.com/gmahechas/erp/commit/16749e6))
+* chore(release): publish ([07f4869](https://github.com/gmahechas/erp/commit/07f4869))
+* chore(release): publish ([953fddb](https://github.com/gmahechas/erp/commit/953fddb))
+* chore(release): publish ([b1e3f94](https://github.com/gmahechas/erp/commit/b1e3f94))
+* chore(release): publish ([fbe8c6f](https://github.com/gmahechas/erp/commit/fbe8c6f))
+* chore(release): publish ([fd25e68](https://github.com/gmahechas/erp/commit/fd25e68))
+* chore(release): publish ([6192c57](https://github.com/gmahechas/erp/commit/6192c57))
+* chore(release): publish ([6c882a0](https://github.com/gmahechas/erp/commit/6c882a0))
+* fix: auth response ([fe3d31a](https://github.com/gmahechas/erp/commit/fe3d31a))
+* fix: fix mongoose version ([e8e4c11](https://github.com/gmahechas/erp/commit/e8e4c11))
+* fix: fix ms response validation ([9677334](https://github.com/gmahechas/erp/commit/9677334))
+* fix: grpc validation pipe fixed ([08b6c40](https://github.com/gmahechas/erp/commit/08b6c40))
+* fix: searchMany Fixed ([cd6146b](https://github.com/gmahechas/erp/commit/cd6146b))
+* feat: @gmahechas/common-erp to @gmahechas/common-erp-nestjs ([637a1af](https://github.com/gmahechas/erp/commit/637a1af))
+* feat: add common modules ([dfe87b8](https://github.com/gmahechas/erp/commit/dfe87b8))
+* feat: auth ([1eaa305](https://github.com/gmahechas/erp/commit/1eaa305))
+* feat: base controller grpc and service were create ([6796d1c](https://github.com/gmahechas/erp/commit/6796d1c))
+* feat: base resolver ([1d0c5be](https://github.com/gmahechas/erp/commit/1d0c5be))
+* feat: base-grpc.service added ([c14c8c3](https://github.com/gmahechas/erp/commit/c14c8c3))
+* feat: errors response normalized ([4e8ff19](https://github.com/gmahechas/erp/commit/4e8ff19))
+* feat: fix tsconfig ([193e572](https://github.com/gmahechas/erp/commit/193e572))
+* feat: fix validations ([12e471a](https://github.com/gmahechas/erp/commit/12e471a))
+* feat: ms1 added ([fe1b37d](https://github.com/gmahechas/erp/commit/fe1b37d))
+* feat: refactor how we use pipes ([42e3075](https://github.com/gmahechas/erp/commit/42e3075))
+* feat: serachOne, searchMany validations added ([32d7ea2](https://github.com/gmahechas/erp/commit/32d7ea2))
+* feat: setup auth ms ([cb8e26c](https://github.com/gmahechas/erp/commit/cb8e26c))
+* feat: validation added ([97528f3](https://github.com/gmahechas/erp/commit/97528f3))
+
+
+
+
+
 ## <small>0.0.9 (2021-04-26)</small>
 
 * refactor: error messages ([857aabf](https://github.com/gmahechas/erp/commit/857aabf))

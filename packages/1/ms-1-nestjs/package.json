@@ -1,6 +1,6 @@
 {
   "name": "ms-1-nestjs",
-  "version": "0.0.8",
+  "version": "0.0.11",
   "description": "ms-1-nestjs",
   "author": "gmahechas",
   "private": true,
@@ -22,8 +22,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@gmahechas/common-erp": "^0.0.9",
-    "@gmahechas/common-erp-nestjs": "^0.0.9",
+    "@gmahechas/common-erp": "^0.0.11",
+    "@gmahechas/common-erp-nestjs": "^0.0.11",
     "@grpc/proto-loader": "^0.6.1",
     "@nestjs/common": "^7.6.15",
     "@nestjs/core": "^7.6.15",
