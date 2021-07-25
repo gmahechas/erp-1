@@ -1,8 +1,9 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 const paths = require('./paths');
-const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
+const shouldUseSourceMap = true;
 
 module.exports = function (webpackEnv) {
   const isEnvDevelopment = webpackEnv === 'development';
@@ -11,6 +12,7 @@ module.exports = function (webpackEnv) {
   const getStyleLoaders = (cssOptions, preProcessor) => {
     const loaders = [
       isEnvDevelopment && require.resolve('style-loader'),
+      isEnvProduction && { loader: MiniCssExtractPlugin.loader },
       {
         loader: require.resolve('css-loader'),
         options: cssOptions,
@@ -36,32 +38,49 @@ module.exports = function (webpackEnv) {
       }
     ].filter(Boolean);
     if (preProcessor) {
-      loaders.push({
-        loader: 'sass-loader',
-        options: {
-          sassOptions: {
-            importLoaders: 3,
-            sourceMap: true
+      loaders.push(
+        {
+          loader: require.resolve('resolve-url-loader'),
+          options: {
+            sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
+            root: paths.appSrc,
+          },
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            sassOptions: {
+              importLoaders: 3,
+              sourceMap: true
+            }
           }
         }
-      })
+      )
     }
     return loaders;
   };
 
   return {
-    resolve: {
-      alias: {
-        '@mf-0': path.resolve(__dirname, '..', 'src/')
-      },
-      extensions: ['.tsx', '.ts', '.jsx', '.js'],
-    },
+    mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
     bail: isEnvProduction,
     devtool: isEnvProduction
       ? shouldUseSourceMap
         ? 'source-map'
         : false
       : isEnvDevelopment && 'cheap-module-source-map',
+    optimization: {
+      minimize: isEnvProduction,
+      splitChunks: {
+        chunks: 'all',
+        name: false,
+      },
+    },
+    resolve: {
+      alias: {
+        '@mf-0': path.resolve(__dirname, '..', 'src/')
+      },
+      extensions: ['.tsx', '.ts', '.jsx', '.js'],
+    },
     module: {
       strictExportPresence: true,
       rules: [
@@ -84,11 +103,11 @@ module.exports = function (webpackEnv) {
               },
             },
             {
-              test: /\.(tsx?|jsx?)$/,
+              test: /\.(js|mjs|jsx|ts|tsx)$/,
               include: paths.appSrc,
               loader: require.resolve('babel-loader'),
               options: {
-                presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
+                presets: ['@babel/preset-env', ['@babel/preset-react', { "runtime": "automatic" }], '@babel/preset-typescript'],
                 cacheDirectory: true,
                 cacheCompression: false,
                 compact: isEnvProduction,

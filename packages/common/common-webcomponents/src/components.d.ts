@@ -26,6 +26,12 @@ export namespace Components {
         "disabled": boolean;
         "paginationButton": boolean;
     }
+    interface WcInput {
+        "label": string;
+        "name": string;
+        "required": boolean;
+        "value": string;
+    }
     interface WcPaginator {
     }
     interface WcTable {
@@ -50,6 +56,12 @@ declare global {
         prototype: HTMLWcIconButtonElement;
         new (): HTMLWcIconButtonElement;
     };
+    interface HTMLWcInputElement extends Components.WcInput, HTMLStencilElement {
+    }
+    var HTMLWcInputElement: {
+        prototype: HTMLWcInputElement;
+        new (): HTMLWcInputElement;
+    };
     interface HTMLWcPaginatorElement extends Components.WcPaginator, HTMLStencilElement {
     }
     var HTMLWcPaginatorElement: {
@@ -66,6 +78,7 @@ declare global {
         "wc-button": HTMLWcButtonElement;
         "wc-dropdown": HTMLWcDropdownElement;
         "wc-icon-button": HTMLWcIconButtonElement;
+        "wc-input": HTMLWcInputElement;
         "wc-paginator": HTMLWcPaginatorElement;
         "wc-table": HTMLWcTableElement;
     }
@@ -90,6 +103,13 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "paginationButton"?: boolean;
     }
+    interface WcInput {
+        "label"?: string;
+        "name"?: string;
+        "onInputChange"?: (event: CustomEvent<string>) => void;
+        "required"?: boolean;
+        "value"?: string;
+    }
     interface WcPaginator {
     }
     interface WcTable {
@@ -98,6 +118,7 @@ declare namespace LocalJSX {
         "wc-button": WcButton;
         "wc-dropdown": WcDropdown;
         "wc-icon-button": WcIconButton;
+        "wc-input": WcInput;
         "wc-paginator": WcPaginator;
         "wc-table": WcTable;
     }
@@ -109,6 +130,7 @@ declare module "@stencil/core" {
             "wc-button": LocalJSX.WcButton & JSXBase.HTMLAttributes<HTMLWcButtonElement>;
             "wc-dropdown": LocalJSX.WcDropdown & JSXBase.HTMLAttributes<HTMLWcDropdownElement>;
             "wc-icon-button": LocalJSX.WcIconButton & JSXBase.HTMLAttributes<HTMLWcIconButtonElement>;
+            "wc-input": LocalJSX.WcInput & JSXBase.HTMLAttributes<HTMLWcInputElement>;
             "wc-paginator": LocalJSX.WcPaginator & JSXBase.HTMLAttributes<HTMLWcPaginatorElement>;
             "wc-table": LocalJSX.WcTable & JSXBase.HTMLAttributes<HTMLWcTableElement>;
         }

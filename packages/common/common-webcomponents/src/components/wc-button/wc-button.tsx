@@ -8,13 +8,15 @@ import { MDCRipple } from '@material/ripple';
 })
 export class WcButton {
   @Element() element: HTMLElement;
+  button: MDCRipple;
+
   @Prop() type = '';
   @Prop() icon = '';
   @Prop() disabled = false;
 
-  componentDidLoad() {
-    const button = new MDCRipple(this.element.querySelector('.mdc-button'));
-    button.unbounded = true;
+  componentDidRender() {
+    this.button = new MDCRipple(this.element.querySelector('.mdc-button'));
+    this.button.unbounded = true;
   }
 
   render() {

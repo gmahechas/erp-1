@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { mount } from 'mf1/Mf1App';
 import mountMF from '@mf-0/utils/hooks/mountMF';
 

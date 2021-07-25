@@ -16,8 +16,6 @@ export class WcDropdown {
   @Prop() disabled = false;
   @Prop() data: IItem[] = [];
 
-  constructor() {}
-
   componentDidRender() {
     this.select = new MDCSelect(this.element.querySelector('.mdc-select'));
   }

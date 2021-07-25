@@ -7,6 +7,7 @@ defineCustomElements();
 export const WcButton = /*@__PURE__*/ createReactComponent('wc-button');
 export const WcDropdown = /*@__PURE__*/ createReactComponent('wc-dropdown');
 export const WcIconButton = /*@__PURE__*/ createReactComponent('wc-icon-button');
+export const WcInput = /*@__PURE__*/ createReactComponent('wc-input');
 export const WcPaginator = /*@__PURE__*/ createReactComponent('wc-paginator');
 export const WcTable = /*@__PURE__*/ createReactComponent('wc-table');
 //# sourceMappingURL=components.js.map

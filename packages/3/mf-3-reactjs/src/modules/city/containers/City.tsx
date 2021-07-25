@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 import FragmentHco from '@mf-3/utils/hoc/FragmentHco';
