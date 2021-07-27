@@ -11,9 +11,10 @@ export class WcInput {
   input: MDCTextField;
 
   @Prop() name = '';
-  @Prop({ mutable: true }) value = '';
+  @Prop({ mutable: true, reflect: true }) value = '';
   @Prop() label = '';
   @Prop() required = false;
+  @Prop() disabled = false;
   @Event() inputChange: EventEmitter<string>;
 
   componentDidRender() {
@@ -22,8 +23,13 @@ export class WcInput {
 
   render() {
     return (
-      <Host>
-        <label class="mdc-text-field mdc-text-field--outlined">
+      <Host name={this.name}>
+        <label
+          class={{
+            'mdc-text-field mdc-text-field--outlined': true,
+            'mdc-text-field--disabled': this.disabled,
+          }}
+        >
           <span class="mdc-notched-outline">
             <span class="mdc-notched-outline__leading"></span>
             <span class="mdc-notched-outline__notch">
@@ -31,7 +37,7 @@ export class WcInput {
             </span>
             <span class="mdc-notched-outline__trailing"></span>
           </span>
-          <input type="text" required={this.required} name={this.name} class="mdc-text-field__input" value={this.value} onInput={this.onInput} />
+          <input type="text" name={this.name} class="mdc-text-field__input" value={this.value} onInput={this.onInput} required={this.required} disabled={this.disabled} />
         </label>
       </Host>
     );

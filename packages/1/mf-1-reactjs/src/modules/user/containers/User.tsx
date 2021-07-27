@@ -1,12 +1,17 @@
 import { Link } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 
-import { WcInput } from '@gmahechas/common-webcomponents-react';
+import {
+    WcInput,
+    WcDropdown,
+    WcDropdownOption,
+} from '@gmahechas/common-webcomponents-react';
 
 import FragmentHco from '@mf-1/utils/hoc/FragmentHco';
 
 interface FormData {
     firstName: string;
+    role: string;
 }
 
 const User = () => {
@@ -31,9 +36,38 @@ const User = () => {
                             name={name}
                             value={value}
                             label='First name'
-                            onInputChange={onChange}
                             required={invalid || isDirty}
+                            onInputChange={onChange}
                         />
+                    )}
+                />
+                <Controller
+                    control={control}
+                    name='role'
+                    defaultValue=''
+                    rules={{ required: true }}
+                    render={({
+                        field: { name, value, onChange },
+                        fieldState: { invalid, isDirty },
+                    }) => (
+                        <WcDropdown
+                            name={name}
+                            value={value}
+                            label='Role'
+                            required={invalid || isDirty}
+                            onSelectChange={onChange}
+                        >
+                            <WcDropdownOption value=''>&nbsp;</WcDropdownOption>
+                            <WcDropdownOption value='grains'>
+                                Rice
+                            </WcDropdownOption>
+                            <WcDropdownOption value='vegetables'>
+                                Vegetables
+                            </WcDropdownOption>
+                            <WcDropdownOption value='fruit'>
+                                Fruit
+                            </WcDropdownOption>
+                        </WcDropdown>
                     )}
                 />
                 <input type='submit' />

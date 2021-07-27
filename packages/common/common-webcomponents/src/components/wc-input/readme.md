@@ -9,6 +9,7 @@
 
 | Property   | Attribute  | Description | Type      | Default |
 | ---------- | ---------- | ----------- | --------- | ------- |
+| `disabled` | `disabled` |             | `boolean` | `false` |
 | `label`    | `label`    |             | `string`  | `''`    |
 | `name`     | `name`     |             | `string`  | `''`    |
 | `required` | `required` |             | `boolean` | `false` |

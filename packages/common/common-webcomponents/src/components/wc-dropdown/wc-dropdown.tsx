@@ -1,6 +1,5 @@
-import { Component, Host, h, Element, Prop } from '@stencil/core';
+import { Component, Host, h, Element, Prop, Event, EventEmitter } from '@stencil/core';
 import { MDCSelect } from '@material/select';
-import { IItem } from '../../utils/item.interface';
 
 @Component({
   tag: 'wc-dropdown',
@@ -11,35 +10,24 @@ export class WcDropdown {
   @Element() element: HTMLElement;
   select: MDCSelect;
 
+  @Prop() name = '';
+  @Prop({ mutable: true, reflect: true }) value: string | object = '';
   @Prop() label = '';
   @Prop() required = false;
   @Prop() disabled = false;
-  @Prop() data: IItem[] = [];
+  @Event() selectChange: EventEmitter<string | object>;
 
   componentDidRender() {
     this.select = new MDCSelect(this.element.querySelector('.mdc-select'));
-  }
-
-  private getOptions() {
-    return this.data.map((item: IItem) => {
-      return (
-        <li
-          class={{
-            'mdc-list-item': true,
-            'mdc-list-item--selected': item.selected,
-            'mdc-list-item--disabled': item.disabled,
-          }}
-          data-value={item.value}
-        >
-          <span class="mdc-list-item__ripple"></span>
-          <span class="mdc-list-item__text">{item.label}</span>
-        </li>
-      );
+    this.select.listen('MDCSelect:change', (event: CustomEvent) => {
+      this.value = event.detail.value;
+      this.selectChange.emit(this.value);
     });
   }
+
   render() {
     return (
-      <Host>
+      <Host name={this.name}>
         <div
           class={{
             'mdc-select mdc-select--outlined': true,
@@ -68,14 +56,12 @@ export class WcDropdown {
 
           <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
             <ul class="mdc-list">
-              <li class="mdc-list-item" data-value="">
-                <span class="mdc-list-item__ripple"></span>
-              </li>
-              {this.getOptions()}
+              <slot />
             </ul>
           </div>
         </div>
       </Host>
     );
   }
+
 }
