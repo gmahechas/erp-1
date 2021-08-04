@@ -108,6 +108,7 @@ module.exports = function (webpackEnv) {
               loader: require.resolve('babel-loader'),
               options: {
                 presets: ['@babel/preset-env', ['@babel/preset-react', { "runtime": "automatic" }], '@babel/preset-typescript'],
+                plugins: ['@babel/plugin-transform-runtime'],
                 cacheDirectory: true,
                 cacheCompression: false,
                 compact: isEnvProduction,
