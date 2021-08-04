@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>0.0.12 (2021-08-04)</small>
+
+* feat: redux thunk ([6b7252e](https://github.com/gmahechas/erp/commit/6b7252e))
+
+
+
+
+
 ## <small>0.0.11 (2021-07-25)</small>
 
 * refactor: mf dashboard create ([722b2ce](https://github.com/gmahechas/erp/commit/722b2ce))
