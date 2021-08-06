@@ -11,6 +11,7 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
+    "skipLibCheck": true, // https://gmahechas.atlassian.net/browse/ERP-1
     "paths": {
   	  "@ms-6/*" : ["src/*"]
     }

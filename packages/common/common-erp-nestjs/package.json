@@ -17,6 +17,7 @@
     "@nestjs/graphql": "^7.10.3",
     "@nestjs/microservices": "^7.6.15",
     "graphql": "^15.5.0",
+    "joi": "^17.4.2",
     "mongoose": "^5.12.5",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.6",
