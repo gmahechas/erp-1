@@ -1,0 +1,25 @@
+{
+    "name": "ms-3-expressjs",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": "gmahechas",
+    "license": "MIT",
+    "scripts": {
+        "start": "ts-node-dev --poll src/index.ts",
+        "start:lambda": "ts-node-dev --poll src/lambda/run.ts",
+        "build": "rimraf dist && tsc"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "path-to-regexp": "^6.2.0"
+    },
+    "devDependencies": {
+        "@types/aws-lambda": "^8.10.81",
+        "@types/express": "^4.17.13",
+        "@types/node": "^16.4.13",
+        "@types/rimraf": "^3.0.1",
+        "rimraf": "^3.0.2",
+        "ts-node-dev": "^1.1.8",
+        "typescript": "^4.3.5"
+    }
+}
